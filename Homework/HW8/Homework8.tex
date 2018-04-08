@@ -1,0 +1,442 @@
+\documentclass{article}
+\usepackage{blindtext}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{commath}
+\usepackage{siunitx}
+
+
+\usepackage[b]{esvect}
+
+\newcommand{\de}{\mathrm{d}}
+
+\begin{document}
+\title{Homework 8}
+\author{Xueqi Li}
+% \date{Feb 4, 2017}
+% \email{xueqi.li@stonybrook.edu}
+
+% \begin{abstract}
+% Consider a vector (given with respect to a fixed Cartesian basis). Here $t$ means time.
+% \[
+% \vv{r}(t) = \sin(\pi t)\hat{x} + \cos(\pi t)\hat{y} - \sqrt{7}\hat{z}
+% \]
+% \end{abstract}
+
+\maketitle
+\begin{enumerate}
+    \item Two particles are connected by an ideal spring with spring constant $k$ and unstretched length $l = 0$. They both slide along a frictionless ramp given by the equation $z = \alpha y$.
+    \begin{enumerate}
+        \item Write down the Lagrangian for the system in terms of $\vv r_1$ and $\vv r_2$, imposing constrants with Lagrange multipliers\\
+
+        \[
+        L = \frac{1}{2} m_1 \dot{\vv r}_1^2 + \frac{1}{2}m_2 \dot{\vv r}_2^2 -mgz_1 - mgz_2 - \lambda_1 (z_1 - \alpha y_2) - \lambda_2 (z_2 - \alpha y_2) - \frac{1}{2}k (\vv r_1 - \vv r_2)^2
+        \]
+
+        \item Rewrite the Lagrangian in terms of $\vv r_\text{cm}$ and $\vv r = \vv r_1 - \vv r_2$.
+        
+        First we defined:
+        \[
+        \vv r_\text{cm} = \frac{m_1 \vv r_1 + m_2 \vv r_2}{m_1 + m_2} \ ,\ M = m_1 + m_2 \ ,\ \mu = \frac{m_2 m_2}{m_1 + m_2}
+        \]
+        Thus, we can have
+        \begin{align*}
+            \vv r_1= \vv r_\text{cm} + \frac{m_2 \vv r}{M} \\
+            \vv r_2= \vv r_\text{cm} - \frac{m_1 \vv r}{M}
+        \end{align*}
+        Thus, we have:
+        \begin{align*}
+            L &= \frac{1}{2}m_1 \dot{\vv r}_1^2 + \frac{1}{2}m_2 \dot{\vv r}_2^2 -mgz_1 - mgz_2 - \lambda_1 (z_1 - \alpha y_2) - \lambda_2 (z_2 - \alpha y_2) - U \\
+              &= \frac{1}{2}m_1 (\vv r_\text{cm} + \frac{m_2 \vv r}{M})^2 + \frac{1}{2}m_2 (\vv r_\text{cm} - \frac{m_1 \vv r}{M})^2 -mgz_1 - mgz_2 - \lambda_1 (z_1 - \alpha y_2) - \lambda_2 (z_2 - \alpha y_2) - U \\
+              &= \frac{1}{2}M \dot{\vv r}_\text{cm}^2 + \frac{1}{2}\mu \dot{\vv r}^2 - mgz_1 - mgz_2 - \lambda_1 (z_1 - \alpha y_2) - \lambda_2 (z_2 - \alpha y_2) - \frac{1}{2} k \vv r^2
+        \end{align*}
+
+        \item Eliminate the Lagrange multipliers and use the constraints to eliminate $z = z_1 - z_2$ and $z_cm$.
+
+        From above Lagrange we have:
+        \[
+            L = \frac{1}{2}M (\dot x_\text{cm}^2 + \dot y_\text{cm}^2 + \dot z_\text{cm}^2) + \frac{1}{2} \mu (\dot x^2 + \dot y^2 + \dot z^2) - mgz_1 - mgz_2 - \lambda_1 (z_1 - \alpha y_) - \lambda_2 (z_2 - \alpha y_2) - U
+        \]
+
+        Now we want to find $z_\text{cm}$:
+        \begin{align*}
+            z_\text{cm} &= \frac{m_1 z_1 + m_2 z_2}{M} = \frac{m_1 \alpha y_1 + m_2 \alpha y_2}{M} \\
+            z &= z_1 - z_2 = \alpha y_1 - \alpha y_2 = \alpha y
+        \end{align*}
+        Therefore, we plug in $z = \alpha y$
+        \begin{align*}
+            L &= \frac{1}{2}M (\dot x_\text{cm}^2 + \dot y_\text{cm}^2 + (\frac{m_1 \alpha \dot y_1 + m_2 \alpha \dot y_2}{M})^2) + \frac{1}{2}\mu (\dot x^2 + \dot y^2 + \dot z^2) - mg\alpha y_1 - mg\alpha y_2 - U \\
+              &=\frac{1}{2}M (\dot x_\text{cm}^2 + \dot y_\text{cm}^2 + \alpha^2 \dot y_\text{cm}^2) + \frac{1}{2}\mu (\dot x^2 + \dot y^2 + \alpha^2 \dot y^2) - m_1g\alpha y_1 - m_2g\alpha y_2 - U \\
+              &= \frac{1}{2}M (\dot x_\text{cm}^2 + \dot y_\text{cm}^2 + \alpha^2 \dot y_\text{cm}^2) + \frac{1}{2}\mu (\dot x^2 + \dot y^2 + \alpha^2 \dot y^2) - \alpha g M y_\text{cm} - \frac{1}{2} k(x^2 + y^2 + \alpha^2 y^2) \\
+        \end{align*}
+        \item Find the Euler-Lagrange equation for the resulting system\\
+
+        From above we have:
+        \[
+        L = \frac{1}{2}M (\dot x_\text{cm}^2 + \dot y_\text{cm}^2 + \alpha^2 \dot y_\text{cm}^2) + \frac{1}{2}\mu (\dot x^2 + \dot y^2 + \alpha^2 \dot y^2) - \alpha g M y_\text{cm} - \frac{1}{2} k (x^2 + y^2 + \alpha^2 y^2)
+        \]
+        And for Euler-Lagrange equation we have:
+        \[
+        \frac{\de}{\de t} \frac{\partial L}{\partial \dot q} = \frac{\partial L}{\partial q}
+        \]
+        For $\vv r_\text{cm}$, we have:
+        \begin{align*}
+            x_\text{cm}: \ \frac{\de}{\de t} \frac{\partial L}{\partial \dot x_\text{cm}} &= \frac{\partial L}{\partial x_\text{cm}} \\
+                           M\ddot x_\text{cm} &= 0\\
+            y_\text{cm}: \ \frac{\de}{\de t} \frac{\partial L}{\partial \dot y_\text{cm}} &= \frac{\partial L}{\partial y_\text{cm}} \\
+                           -M(1 + \alpha^2)\ddot y_\text{cm} &= \alpha g M\\
+        \end{align*}
+        For $\vv r$, we have:
+        \begin{align*}
+            x: \ \frac{\de}{\de t} \frac{\partial L}{\partial \dot x} &= \frac{\partial L}{\partial x} \\
+                           \mu\ddot x &= -kx\\
+            y: \ \frac{\de}{\de t} \frac{\partial L}{\partial \dot y} &= \frac{\partial L}{\partial y} \\
+                           \mu(1+\alpha^2)\ddot y &= - (\alpha^2 + 1)ky\
+        \end{align*}
+
+        \item Write down the most general solution for $\vv r_\text{cm}(t)$ and $\vv r (t)$\\
+
+        For $\vv r_\text{cm}$, we have:
+        \begin{align*}
+            x_\text{cm} &= v_x(0) x + x(0) \\
+            y_\text{cm} &= -\frac{\alpha a}{1+\alpha^2}(\tilde v_y(0)y + \tilde y(0))
+        \end{align*}
+
+        For $\vv r$, we have:
+        \begin{align*}
+            x &= C_{x1} e^{\sqrt{\frac{k}{\mu}}ix} + C_{x2} e^{-\sqrt{\frac{k}{\mu}}ix}\\
+            y &= C_{y1} e^{\sqrt{\frac{k}{\mu}}iy} + C_{y2} e^{-\sqrt{\frac{k}{\mu}}iy}
+        \end{align*}
+        where 
+        \begin{align*}
+            z_{cm} &= \alpha y_\text{cm} \\
+            z &= \alpha y 
+        \end{align*}
+
+
+
+    \end{enumerate}
+    \item Consider a Lagrangian
+    \[
+    L = \frac{1}{2}\frac{m(\dot x^2 + \dot y^2)}{(1+ x^2 + y^2)^2}
+    \]
+    \begin{enumerate}
+        \item Show that this is invariant under rotations about the $z$-axis. Find the corresponding Noether charge.\\
+
+        We want to find
+        \[
+        Q = \frac{\partial L}{\partial \dot q_i} R_i - K
+        \]
+        is conserved.
+
+        For rotation, we have
+        \begin{align*}
+            \delta x &= \alpha y \\
+            \delta y &= -\alpha x
+        \end{align*}
+        Which give us $R$
+        \begin{align*}
+            R_x = y \\
+            R_y = -x
+        \end{align*}
+        If we have $\delta L = 0$, we can use $K = 0$
+        \begin{align*}
+           Q &= \frac{\partial L}{\partial \dot x} R_x + \frac{\partial L}{\partial \dot y}R_y \\
+                  &= \frac{m\dot x y }{(1+x^2+y^2)^2} - \frac{m\dot y x }{(1+x^2+y^2)^2} \\
+                    &= \frac{m(\dot x y + \dot y x)}{(1+x^2+y^2)^2} \\
+                    &= -\frac{L_z}{(1+x^2+y^2)^2}
+        \end{align*}
+        is conserved, which give us $L_z$ is conserved, i.e., invariant under rotations.
+        % For a rotation, we have
+        % \[
+        % \delta \vv r = \vv \alpha \times \vv r = \alpha R_r
+        % \]
+
+        % Now for hour Lagrangian:
+        % \begin{align*}
+        %     \frac{1}{2}\frac{m(\dot x^2 + \dot y^2)}{(1+ x^2 + y^2)^2} = \frac{m \dot{\vv r}^2}{2(1+r^2)^2}
+        % \end{align*}
+
+        % Thus we can plug it in to the equation:
+        % \[
+        % Q = \frac{m\dot{\vv r}}{2(1+r^2)^2} \times \vv r = -\frac{\vv L_\text{m}}{2(1+r^2)^2}
+        % \]
+        
+
+        \item Rewrite $L$ in planar polar coordinates $r$, $\theta$. Show that the results of part a are now obvious.\\
+
+        \[
+        L = \frac{1}{2}\frac{m(\dot r ^2 + r^2\dot \theta^2)}{(1+ r^2)^2}
+        \]
+        To check the results we just plug it into Lagrangian's equation for $\theta$:
+        \begin{align*}
+            \frac{\de}{\de t} \frac{mr^2\dot \theta}{(1+r^2)^2} = 0 \\
+            \frac{mr^2\dot \theta}{(1+r^2)^2} = \text{Const}
+        \end{align*}
+        where $mr^2\dot \theta = L_z$.
+
+        \item A mush less obvious symmetry is the following:
+        \[
+        \delta r = \alpha(1+r^2)\cos\theta\ ,\ \delta\theta = \alpha(r - \frac{1}{r})\sin\theta
+        \]
+        Calculate the Noether charge of this symmetry assuming that $\delta L = 0$. For 20 points extra credit, prove taht this is actually a symmetry.\\
+
+        First we still want to use
+        \[
+        L = \frac{1}{2}\frac{m\dot r ^2}{(1+ r^2)^2}
+        \]
+
+        Form $\delta r = \alpha(1+r^2)\cos\theta$, $\delta\theta = \alpha(r - \frac{1}{r})\sin\theta$, we have
+        \[
+        R_r = (1+r^2)\cos\theta \ ,\ R_\theta = (r - \frac{1}{r})\sin\theta
+        \]
+        Since $\delta L = 0$, we find $K = 0$
+
+        Now we have:
+        \begin{align*}
+            Q_r &= \frac{\partial L}{\partial \dot r} (1+r^2)\cos\theta \\
+                &= \frac{m\dot r}{(1+r^2)^2} (1+r^2)\cos\theta\\
+                &= \frac{m\dot r \cos\theta}{(1+r^2)}\\
+            Q_\theta &= \frac{\partial L}{\partial \dot \theta}(r - \frac{1}{r})\sin\theta \\
+                     &= \frac{mr^2\dot\theta}{(1+r^2)^2}(r - \frac{1}{r})\sin\theta \\
+                     &= \frac{mr\dot\theta(r^2 - 1)\sin\theta}{(1+r^2)^2}
+        \end{align*}
+
+        To show this is a symmetry, we find the change in $L$:
+        \[
+        \delta L = \sum (\frac{\partial L}{\partial q_i}\delta q_i + \frac{\partial L}{\partial \dot q_i}\delta \dot q_i)
+        \]
+
+        For $r$, we have:
+        \begin{align*}
+            \frac{\partial L}{\partial r} &= \frac{(1+r^2)mr\dot\theta^2 - 2r m(\dot r^2 + r^2\dot\theta^2)(1+r^2)}{(1+r^2)^4} \\
+            \frac{\partial L}{\partial \dot r} &= \frac{m\dot r}{(1+r^2)^2}\\
+            \delta r &= \alpha(1+r^2)\cos\theta\\
+            \delta \dot r &= \frac{\de}{\de t} \alpha(1+r^2)\cos\theta = 2\alpha r\dot r \cos\theta - \alpha (1+r^2)\dot\theta \sin\theta
+        \end{align*}
+
+        For $\theta$, we have:
+        \begin{align*}
+            \frac{\partial L}{\partial \theta} &= 0 \\
+            \frac{\partial L}{\partial \dot \theta} &= \frac{mr^2\dot\theta}{(1+r^2)^2}\\
+            \delta\theta &= \alpha(r - \frac{1}{r})\sin\theta\\
+            \delta \dot \theta &= \alpha (1 + \frac{1}{r^2}) \dot r \sin\theta + \alpha (r - \frac{1}{r})\dot \theta \cos\theta
+        \end{align*}
+
+        Now we want to plug this in:
+        \begin{align*}
+            \delta L =& 
+            \frac{\partial L}{\partial r}\delta r + \frac{\partial L}{\partial \dot r}\delta \dot r + \frac{\partial L}{\partial \theta}\delta \theta + \frac{\partial L}{\partial \dot \theta}\delta \dot \theta\\
+            =& (\frac{(1+r^2)mr\dot\theta^2 - 2r m(\dot r^2 + r^2\dot\theta^2)(1+r^2)}{(1+r^2)^4)} (\alpha(1+r^2)\cos\theta) \\
+            &+ (\frac{m\dot r}{(1+r^2)^2})(2\alpha r\dot r \cos\theta - \alpha (1+r^2)\dot\theta \sin\theta) \\
+            &+ (\frac{mr^2\dot\theta}{(1+r^2)^2})(\alpha (1 + \frac{1}{r^2}) \dot r \sin\theta + \alpha (r - \frac{1}{r})\dot \theta \cos\theta)
+            =& 0
+            \\
+        \end{align*}
+        There will be lots of cancellation and end up with zero, which means there will no change for $L$, which means it is symmetry.
+
+    \end{enumerate}
+
+        \item A planet with angular momentum $L_z$ and reduced mass $\mu$ is orbiting around a sun such that the total mass is $M$.
+        \begin{enumerate}
+            \item Write down the effective potential $U_\text{eff}$.\\
+
+            Let say we have a potential in form of gravity:
+            \[
+            U = -\frac{\xi}{r}
+            \]
+            where $\xi$ is a constent. In gravity, $\xi = G m_1m_2$.
+
+            Now we find a effective potential for a central force:
+            \[
+            U_\text{eff} = \frac{L_z^2}{2\mu r^2} + U(r) = \frac{L_z^2}{2\mu r^2} - \frac{\xi}{r}
+            \]
+            \item Sketch $U_\text{eff}$.
+            \\[2in]
+            \item What is the radius and energy of a circular orbit?\\
+
+            For a circular, we want to have $U_\text{eff}$ be a minmum:
+            \begin{align*}
+                \frac{\partial U_\text{eff}}{\partial r} &= 0 \\
+                -\frac{L_z^2}{\mu r^3} + \frac{\xi}{r^2} &= 0 \\
+                \frac{L_z^2}{\mu r^3} = \frac{\xi}{r^2} \\
+                L_z^2 = r\xi \mu \\
+                \frac{L_z^2}{\xi \mu} = r
+            \end{align*}
+
+            To find the energy, we just plug it in:
+            \begin{align*}
+                E &= U + T \\
+                  &= \frac{1}{2}\mu \dot r^2 + \frac{L_z^2}{2\mu r^2} - \frac{\xi}{r} \\
+                  &= \frac{\xi^2 \mu}{2L_z^2} - \frac{\xi^2\mu}{L_z^2} \\
+                  &= -\frac{\xi^2 \mu}{2L_z^2}
+            \end{align*}
+            \item What is the frequenct of small oscillations around the circular orbit?\\
+
+            Knowing the radius, we can find the period by using the Kepler's laws:
+            \begin{align*}
+                2\mu A &= TL_z \\
+                2\mu \pi \frac{L_z^4}{\xi^2 \mu^2} &= TL_z \\
+                \frac{2\pi L_z^3}{\xi^2\mu} &= T
+            \end{align*}
+        \end{enumerate}
+
+        \item We found the orbit of a mass attracted by gravity to a central sun in polar coordinates:
+        \[
+        r(\theta) = \frac{\alpha}{1 + \epsilon\cos\theta}
+        \]
+        \begin{enumerate}
+            \item Rewrite the cartesian coordinates $x$, $y$.\\
+
+            Easy to see that
+            \[
+            r = \sqrt{x^2 + y^2} \ , \ \cos\theta = \frac{x}{\sqrt{x^2 + y^2}}
+            \]
+            Now we just plug in:
+            \begin{align*}
+                \sqrt{x^2 + y^2} &= \frac{\alpha}{1 + \epsilon\frac{x}{\sqrt{x^2 + y^2}}} \\
+                \sqrt{x^2 + y^2} &= \frac{\alpha\sqrt{x^2+y^2}}{\sqrt{x^2+y^2} + \epsilon x} \\
+                1 &= \frac{\alpha}{\sqrt{x^2+y^2} + \epsilon x}\\
+                \alpha &= \sqrt{x^2+y^2} + \epsilon x
+            \end{align*}
+
+            \item Show that when $\epsilon \in [0,1)$ it can be written in the From
+            \[
+            \frac{(x - x_0)^2}{a^2} + \frac{y^2}{b^2} = 1
+            \]\\
+
+            \begin{align*}
+                \alpha &= \sqrt{x^2+y^2} + \epsilon x \\
+                \alpha - \epsilon x &= \sqrt{x^2 + y^2} \\
+                \alpha^2 - 2\epsilon\alpha x + \epsilon^2 x^2 &= x^2 +y^2 \\
+                \alpha^2 &= x^2 +y^2 + 2\epsilon\alpha x - \epsilon^2 x^2 \\
+                \alpha^2 &= (1 - \epsilon^2)x^2+ y^2 + 2\epsilon\alpha x \\
+                \frac{\alpha^2}{(1 - \epsilon^2)} &= x^2 + \frac{2\epsilon\alpha x}{(1 - \epsilon^2)} + \frac{y^2}{(1 - \epsilon^2)} \\
+                \frac{\alpha^2}{(1 - \epsilon^2)} + \frac{\epsilon \alpha}{(1-\epsilon^2)^2} &= x^2 + \frac{2\epsilon\alpha x}{(1 - \epsilon^2)} + \frac{\epsilon \alpha}{(1-\epsilon^2)^2} + \frac{y^2}{(1 - \epsilon^2)} \\
+                \frac{\alpha^2}{(1 - \epsilon^2)} + \frac{\epsilon^2 \alpha^2}{(1-\epsilon^2)^2} &= (x + \frac{\epsilon \alpha}{(1-\epsilon^2)})^2 + \frac{y^2}{(1 - \epsilon^2)} \\
+                1 &= \frac{(x + \frac{\epsilon \alpha}{(1-\epsilon^2)})^2}{\frac{\alpha^2}{(1 - \epsilon^2)} + \frac{\epsilon^2 \alpha^2}{(1-\epsilon^2)^2}} + \frac{\frac{y^2}{(1 - \epsilon^2)}}{\frac{\alpha^2}{(1 - \epsilon^2)} + \frac{\epsilon^2 \alpha^2}{(1-\epsilon^2)^2}} \\
+                \frac{(x + \frac{\epsilon \alpha}{(1-\epsilon^2)})^2}{\frac{\alpha^2}{(1 - \epsilon^2)} + \frac{\epsilon^2 \alpha^2}{(1-\epsilon^2)^2}} + \frac{ y^2}{\alpha^2+ \frac{\epsilon^2 \alpha^2}{(1-\epsilon^2)}}  &= 1 \\
+                \frac{(x + \frac{\epsilon \alpha}{(1-\epsilon^2)})^2}{\frac{\alpha^2 - \alpha^2 \epsilon^2 +\epsilon^2 \alpha^2}{(1-\epsilon^2)^2}} + \frac{ y^2}{\frac{\alpha^2 - \alpha^2 \epsilon^2 + \epsilon^2 \alpha^2}{(1-\epsilon^2)}}  &= 1 \\
+                \frac{(x + \frac{\epsilon \alpha}{(1-\epsilon^2)})^2}{\frac{\alpha^2}{(1-\epsilon^2)^2}} + \frac{ y^2}{\frac{\alpha^2}{(1-\epsilon^2)}}  &= 1
+            \end{align*}
+
+            % First let plug in $a = \frac{\alpha}{1-\epsilon^2}$ and $b = \frac{\alpha}{\sqrt{1-\epsilon^2}}$ to the ellipse form equation:
+            % \begin{align*}
+            %     \frac{(x - x_0)^2(1-\epsilon^2)^2}{\alpha^2} + \frac{y^2(1-\epsilon^2)}{\alpha^2} &= 1 \\
+            %     \frac{(x - x_0)^2(1-\epsilon^2)^2 + y^2(1-\epsilon^2)}{\alpha^2} &= 1 \\
+            %     (x - x_0)^2(1-\epsilon^2)^2 + y^2(1-\epsilon^2) &= \alpha ^2
+            % \end{align*}
+            % Now we plug in $x_0 = a \epsilon = \frac{\alpha}{1-\epsilon^2} \epsilon$:
+            % \begin{align*}
+            %     (x - \frac{\alpha\epsilon}{1-\epsilon^2})^2(1-\epsilon^2)^2 + y^2(1-\epsilon^2) &= \alpha ^2 \\
+            %     (1-\epsilon^2)\left[(x - \frac{\alpha\epsilon}{1-\epsilon^2})^2(1-\epsilon^2) + y^2\right] &= \alpha ^2
+            % \end{align*}
+            \item Find $x_0$, $a$, $b$ in terms of $\alpha$, $\epsilon$.\\
+
+            From above we can find that
+            \begin{align*}
+                x_0 &= -\frac{\epsilon \alpha}{(1-\epsilon^2)} \\
+                a^2 &= \frac{\alpha^2}{(1-\epsilon^2)^2} \\
+                b^2 &= \frac{\alpha^2}{(1-\epsilon^2)} \\
+            \end{align*}
+            \item What equation do you find in the limit as $\epsilon \rightarrow 1$?\\
+
+            From above we have
+            \begin{align*}
+                \alpha^2 - 2\epsilon\alpha x + \epsilon^2 x^2 &= x^2 +y^2 \\
+                \alpha^2 - 2\alpha x + x^2 &= x^2 +y^2 \\
+                \alpha^2 - 2\alpha x &= y^2
+            \end{align*}
+
+            \item Can you find the correct equation for $\epsilon > 1$?\\
+
+            Same part b we can find:
+            \begin{align*}
+                \alpha^2 &= -(\epsilon^2 - 1)x^2+ y^2 + 2\epsilon\alpha x \\
+            \end{align*}
+            Notice the sign change, $(\epsilon^2 - 1) > 0$ now. Now follow the same step of part b we have
+            \[
+            \frac{(x - \frac{\epsilon \alpha}{(\epsilon^2-1)})^2}{\frac{\alpha^2}{(1-\epsilon^2)^2}} - \frac{ y^2}{\frac{\alpha^2}{(\epsilon^2-1)}}  = 1
+            \]
+
+        \end{enumerate}
+        \item If you did Problem 4.41 you met the virial theorem for a circular orbit of a particle in a central force with $U = k r^n$. Here is a more general form of the gheorem that applies to any periodic orbit of a particle.
+        \begin{enumerate}
+            \item Find the time derivative of the quantity $G = \vv r \cdot \vv p$ and, by integrating from time 0 to $t$, show that
+            \[
+            \frac{G(t) - G(0)}{t} = 2\langle T \rangle + \langle \vv F \cdot \vv r \rangle
+            \]
+            where $\vv F$ is the net force on the particle and $\langle f \rangle$ denotes the average over time of any quantity $f$\\
+
+            First we want to find the time derivative of $G$:
+            \begin{align*}
+                \frac{\de G}{\de t} &= \dot{\vv r} \cdot \vv p + \vv r \cdot \dot{\vv p} \\
+                                    &= \vv v^2 m + \vv r \cdot \vv F \\
+                                    &= 2T + \vv r \cdot \vv F
+            \end{align*}
+
+            Now we find
+            \begin{align*}
+                \frac{1}{t} \int_0^t \de G &= \frac{1}{t}\int_0^t (2T + \vv r \cdot \vv F) \de t \\
+                \frac{G(t) - G(0)}{t} &= \frac{2\int_0^t T \de t}{t} + \frac{\int_0^t \vv \cdot \vv F}{t} \\
+                \frac{G(t) - G(0)}{t} &= 2\langle T \rangle + \langle \vv F \cdot \vv r \rangle
+            \end{align*}
+
+
+
+            \item Explain why, if the particle's orbit is periodic and if we make $t$ sufficiently large, we can make the left-hand side of this equation as small as we please. That is, the left side approaches zero as $t \rightarrow \infty$.\\
+
+            Since $G$ is a bounded function over $\mathbb{R}$, we have
+            \[
+            \lim_{t\rightarrow\infty} \frac{G(t) - G(0)}{t} = 0
+            \]
+
+            \item Use this result to prove that if $\vv F$ comes from the potential energy $U = kr^n$, then $\langle T \rangle = \frac{n \langle U \rangle}{2}$, if now $\langle f \rangle$ denotes the time average over a very long time. \\
+
+            First we find force:
+            \[
+            \vv F = - \nabla U = -knr^{n-1} \hat r
+            \]
+
+            Thus we have
+            \[
+            \vv F \cdot \vv r = -knr = - n U
+            \]
+
+            Plug it into above result:
+            \begin{align*}
+                0 = \frac{G(t) - G(0)}{t} &= 2\langle T \rangle + \langle \vv F \cdot \vv r \rangle \\
+                2\langle T \rangle &= - \langle \vv F \cdot \vv r \rangle \\
+                2\langle T \rangle &= - \langle -nU \rangle \\
+                \langle T \rangle &= \frac{n \langle U \rangle}{2}
+            \end{align*}
+
+
+        \end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

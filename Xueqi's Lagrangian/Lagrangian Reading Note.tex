@@ -1,0 +1,306 @@
+\documentclass{article}
+\usepackage{blindtext}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{commath}
+\usepackage{siunitx}
+
+
+\usepackage[b]{esvect}
+
+\newcommand{\de}{\mathrm{d}}
+
+\begin{document}
+\title{Reading Notes for Lagrangian}
+\author{Xueqi Li}
+% \date{Feb 4, 2017}
+% \email{xueqi.li@stonybrook.edu}
+
+% \begin{abstract}
+% Consider a vector (given with respect to a fixed Cartesian basis). Here $t$ means time.
+% \[
+% \vv{r}(t) = \sin(\pi t)\hat{x} + \cos(\pi t)\hat{y} - \sqrt{7}\hat{z}
+% \]
+% \end{abstract}
+
+\maketitle
+
+\section{Lagrangian's Equation}
+A Lagrangian's Equation is given as
+\[
+\frac{\de}{\de t} \frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} = 0
+\]
+And we want following $S$ is extremum
+\[
+S = \int_{t_1}^{t_2} L(q.\dot q, t) \de t
+\]
+In this equation, think as $q_i$ and $\dot{q}_i$ as $q_i(t)$ and $\dot{q}_i(t)$. That is, consider they are just function of time, and $q_i$ and $\dot{q}_i$ have no relation at the moment we defined them in this equation.
+
+\subsection{Two Lagrangian's Equation}
+Let say there is two Lagrangian's euqation, and the difference of it is just a function $f(q,t)$, that is
+\[
+L_2 (q,\dot{q}, t)= L_1(q,\dot q, t)+ f(q,t) 
+\]
+If we let $\frac{\de F}{\de t} = f$ (if such $F$ exist). now that we have:
+\begin{align*}
+    S_2 &= \int_{t_1}^{t_2} L_2 (q,\dot{q}, t) \de t \\
+        &= \int_{t_1}^{t_2}L_1(q,\dot q, t)\de t+ \int_{t_1}^{t_2}f(q,t)\de t \\
+        &= S_1 + F(q_{t_2},t_2) - F(q_{t_1},t_1)
+\end{align*}
+
+Now notice when we derived Lagrangian's equation, the key is to use a small function 
+\[
+\delta S = S[L(q+\delta q, \dot q + \delta \dot q, t)] - S[L(q,\dot q, t)]
+\] 
+Notice when we to this for $S_2$, the $F$ term will cancel and we will end up with same $\delta S$ for both $S_1$ and $S_2$, and in the end we will have same Lagrangian's equation. This is just a useful math fact.
+
+\section{Free particle: Law of Inertial}
+
+Let say there are one particle move freely in the system. To describe it, we want to introduce some frame.
+\subsection{Inertial Frame}
+An inertial frame is a frame such that:
+\begin{enumerate}
+    \item Space is homogeneous and isotropic
+    \item Time is homogeneous
+\end{enumerate}
+
+Since we now chose a inertial frame, that is, space in different $\vv{r}$ have no difference, and time in different time have no difference, the motion of a free particle is not depend on its location and time, i.e, $L$ is not a function of $\vv{r}$ and $t$, i.e., $L$ is a function of $\dot{\vv{r}}$. 
+
+("Motion of the particle is not depend on time" means that in different time, giving same initial conditions and same environment, the motion is the same. Same as location)
+
+Morever, since space have no difference in different direction (property of inertial frame), the motion of the particle is not depend on the direction of motion, i.e., $L$ is not depend on the direction of the $\dot{\vv{r}}$. To express this, we say that $L$ is depend on $\dot{\vv{r}}^2$, just so to make math easier since we do not want to do any square root.
+\[
+L(\dot{\vv{r}}^2)
+\]
+Notice that in this case, $\frac{\partial L}{\partial \vv{r}} = 0$\\
+
+
+Plug it into the Lagrangian's equation:
+\begin{align*}
+    \frac{\de}{\de t} \frac{\partial L}{\partial \dot{\vv{r}}} - \frac{\partial L}{\partial \vv{r}} &= 0 \\
+    \frac{\de}{\de t} \frac{\partial L}{\partial \dot{\vv{r}}} &= 0 \\
+    \frac{\partial L}{\partial \dot{\vv{r}}} &= C \, , \, C\text{ is a constent}
+\end{align*}
+Notic that $\frac{\partial L}{\partial \dot{\vv{r}}}$ is just a function of $\dot{\vv{r}}$, and this function stays constent, that is, $\dot{\vv{r}}$ does not change, otherwise the function of $\dot{\vv{r}}$ will change with $\dot{\vv{r}}$, which does not give us a constent function. This tell us that for a free particle in a inertial frame, $\dot{\vv{r}} = \vv{v} = $ constent, i.e, law of inertia (Newton First Law).
+
+\section{Free particle: Knetic Term of Lagrangian and Mass}
+
+\subsection{Moving frame}
+
+Let say there is another frame moving with respect to our frame in above discussion in a velocity of $\vv{\nu}$, that gives following euqation for our new frame:
+\begin{align*}
+    \vv{r}_\text{new} &= \vv{r} + \vv{\nu}t \\
+    \dot{\vv{r}}_\text{new} &= \dot{\vv{r}} + \vv{\nu}
+\end{align*}
+
+Now let say this new frame is moving with a small velocity $\epsilon$, i.e., $\dot{\vv{r}}_\text{new} = \dot{\vv{r}} + \vv{\epsilon}$. This gives us
+\[
+L (\dot{\vv{r}}_\text{new}^2)= L (\dot{\vv{r}}^2 + 2\dot{\vv{r}}\vv{\epsilon} + \vv{\epsilon}^2)
+\]
+
+Now do a Taylor expansion in term of $\epsilon$:
+\[
+L (\dot{\vv{r}}_\text{new}^2) = L(\dot{\vv{r}}^2) + 2 \frac{\partial L}{\partial \dot{\vv{r}}^2} \dot{\vv{r}} \epsilon + \cdots
+\]
+
+And this two $L$ should lead us to the same Lagrangian's equation since they describe same motion. Recall the useful math we have in the first section, that is, for $2 \frac{\partial L}{\partial \dot{\vv{r}}^2} \dot{\vv{r}} \epsilon$, we want to have some $F$ such that:
+\[
+\frac{\de F}{\de t} = 2 \frac{\partial L}{\partial \dot{\vv{r}}^2} \dot{\vv{r}} \epsilon
+\]
+Some math I do not understand yet shows that such $F$ can only exist if $2 \frac{\partial L}{\partial \dot{\vv{r}}^2} \dot{\vv{r}}$ is linear (this also means $\frac{\partial L}{\partial \dot{\vv{r}}^2}$ have to be not a function of $\dot{\vv{r}}$).
+\begin{align*}
+    2\frac{\partial L}{\partial \dot{\vv{r}}^2} &= C \,,\, C\text{ is a constent}\\
+    2 \de L &= C \de \dot{\vv{r}}^2 \\
+    L &= \frac{1}{2}C \dot{\vv{r}}^2
+\end{align*}
+if now we named this constent $C$ as mass $m$, than we have:
+\[
+L = \frac{1}{2} m \vv{v}^2
+\]
+for free particle. We usually let $T = \frac{1}{2} m \vv{v}^2$ for convenience.
+
+Drop the 2 is possible but that just change the unit of the mass. Morever, mass cannot be negative, otherwise if we plug this $L$ into $S = \int_{t_1}^{t_2} L(q.\dot q, t) \de t$, its minimum can be $-\infty$.
+
+Now if we have many free particles and there are no interaction between them, this gives us an $L$ for each particle and all of them is in form of $\frac{1}{2} m \vv{v}^2$, thus the Lagrangian in totoal is given as:
+\[
+L = \sum L_i = \sum \frac{1}{2} m_i \vv{v}^2_i
+\]
+
+\subsection{Velocity square}
+For any $\vv{v}^2$, we have:
+\[
+\vv{v}^2 = (\frac{\de l}{t})^2 = \frac{\de l^2}{\de t^2}
+\]
+in here I use $l$ instead usual $r$ to avoid confusion.
+
+Thus we have
+\begin{enumerate}
+    \item Cartesian: $\de l^2 = \de x^2 + \de y^2 + \de z^2 \Rightarrow \vv{v}^2 = \dot{x}^2 + \dot y ^2 + \dot z ^2$
+    \item Cylindrical: $\de l^2 = \de r^2 + r^2 \de \phi^2 + \de z^2 \Rightarrow \vv{v}^2 = \dot r^2 + r^2 \dot \phi^2 + \dot z ^2$
+    \item Spherical: $\de l^2 = \de r^2+r^2\de \theta^2 + r^2\sin^2\theta\de \phi^2 \Rightarrow \vv{v}^2 = \dot r^2 + r^2\dot\theta^2+r^2\sin^2\theta\dot \phi^2$
+\end{enumerate}
+
+\section{More potentials: Newton Second Law}
+Let say we have some particle in a closed system, and there are some interaction between them. If we let this interaction is not depend on its velocity (e.g. no magnetic) and time (same argument of inertial frame), than this interaction is only depend on the location of eash particle. Let we write this interaction as $f(\vv r_1, \vv r_2, \cdots)$
+
+Since we already know that $T = \sum \frac{1}{2} m_i \vv{v}^2_i$ is part of the Lagrangian, our new interaction function have to add to Lagrangian:
+\[
+L = T + f(\vv r_1, \vv r_2, \cdots)
+\]
+At this point somepeople decide to write $f(\vv r_1, \vv r_2, \cdots) = - U(\vv r_1, \vv r_2, \cdots)$ and named $U$ as potential, this does not change anything:
+\[
+L = T - U(\vv r_1, \vv r_2, \cdots)
+\]
+that is, $-U$ is just something other than $T$ term, it somehow describe the interaction between the particle.
+
+Notice that $U$ only depend on location, that is means any change of a particle's location will immediately change $U$ and effect the whole system, which is not true in relativity.
+
+Once we have $L$, let us plug it into Lagrangian's equation
+\begin{align*}
+    \frac{\de}{\de t} \frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial q_i} &= 0 \\
+    \frac{\de}{\de t} \frac{\partial L}{\partial \dot{q}_i} &= \frac{\partial L}{\partial q_i} \\
+    \frac{\de}{\de t} \frac{\partial L}{\partial \dot{\vv r}_i} &= \frac{\partial L}{\partial \vv r_i} \\
+    \frac{\de}{\de t} \frac{\partial }{\partial \vv v_i}(\sum \frac{1}{2} m_i \vv{v}^2_i- U) &= \frac{\partial }{\partial \vv r_i} (\sum \frac{1}{2} m_i \vv{v}^2_i- U) \\
+    \frac{\de}{\de t} \frac{\partial }{\partial \vv v_i}(\frac{1}{2} m_i \vv{v}^2_i- U) &= \frac{\partial }{\partial \vv r_i} (\frac{1}{2} m_i \vv{v}^2_i- U) \\
+    \frac{\de}{\de t} \frac{\partial }{\partial \vv v_i}(\frac{1}{2} m_i \vv{v}^2_i) &= \frac{\partial }{\partial \vv r_i} (- U) \\
+    m_i \frac{\de}{\de t} \vv{v}_i &= -\frac{\partial }{\partial \vv r_i} U 
+\end{align*}
+We usually denote $F = -\frac{\partial U}{\partial \vv r_i}$ called force. Notice that we change add a constent to $U$ and this does not change Lagrangian's equation.
+
+This gives us Newton Second Law
+\[
+m_i \ddot{\vv{r}}_i = -\frac{\partial U}{\partial \vv r_i} = F
+\]
+
+\section{Symmetry}
+Notice that Lagrangian's equation is just a second order differential equations, that is, if we have $s$ many different $q$, than in the solution we will have $2s$ many constents depend on the initial conditions, That is, we can say $q$ and $\dot q$ are a function of $C_1, C_2, \cdots, C_{2s}$:
+\[
+q_i (C_1, C_2, \cdots, C_{2s}) \quad \text{and} \quad \dot{q}_i (C_1, C_2, \cdots, C_{2s})
+\]
+In the other hand, we can write any $C_j$ as a function of $q_i$ and $\dot q_i$, and this function stays constents. That is, there are $2s$ many function of $q_i$ and $\dot q_i$ unchanged in the motion.
+
+Now we introduce some importent ones
+\subsection{Energy}
+Recalled in inertial frame, we say that the motion of the partial is not depend on time, that means Lagrangian only depend on $q_i$ and $\dot q_i$.
+Thus, we have:
+\begin{align*}
+    \frac{\de L}{\de t} &= \sum\frac{\partial L}{\partial q_i} \frac{\de q_i}{\de t} + \sum\frac{\partial L}{\partial \dot q_i} \frac{\de \dot q_i}{\de t} \\
+    &=\sum\frac{\partial L}{\partial q_i}\dot q_i + \sum\frac{\partial L}{\partial \dot q_i}\ddot q_i \\
+    &=\sum\frac{\de}{\de t} \frac{\partial L}{\partial \dot{q}_i} \dot q_i + \sum\frac{\partial L}{\partial \dot q_i}\frac{\de}{\de t} \dot q_i \qquad \text{(by Lagrangian's equation)} \\
+    \frac{\de L}{\de t} &=\sum\frac{\de}{\de t} \frac{\partial L}{\partial \dot{q}_i} \dot q_i \qquad\text{???}\\
+    \sum\frac{\de}{\de t} \frac{\partial L}{\partial \dot{q}_i} \dot q_i - \frac{\de L}{\de t} &= 0\\
+    \frac{\de}{\de t} (\sum \frac{\partial L}{\partial \dot{q}_i} \dot q_i - L) &= 0
+\end{align*}
+that is, we find $\sum \frac{\partial L}{\partial \dot{q}_i} \dot q_i - L$ is a constent, Let denote
+\[
+E = \sum \frac{\partial L}{\partial \dot{q}_i} \dot q_i - L
+\]
+We know that 
+\[
+L = T(\dot q) - U(q)
+\]
+Thus, we have
+\begin{align*}
+    E &= \sum \frac{\partial L}{\partial \dot{q}_i} \dot q_i - T+U \\
+    E &= \sum \dot q_i\frac{\partial }{\partial \dot{q}_i} (T(\dot q) - U(q))  - T+U \\
+    E &= \sum \dot q_i\frac{\partial }{\partial \dot{q}_i} T(\dot q) - T+U
+\end{align*}
+
+Here we want to use Euler's Homogeneous Function Theorem
+\[
+x \cdot \nabla f(x) = kf(x)
+\]
+where $k$ is the order of the $x$ in function $f$.
+
+Here, we have:
+\[
+\dot q \cdot \frac{\partial T}{\partial \dot q} = 2 T
+\]
+
+Thus we have:
+\[
+E = T+U
+\]
+
+\subsection{Momentum}
+Let say we have one frame, and another fram is $\vv \epsilon$ away from our first frame, that is, $\vv r= \vv r_\text{old} + \vv \epsilon$. We want $L$ does not change when we move to another frame, since the motion of the particles does not change. This is also an property of inertial frame, i.e., Space have no difference in different point. Thus, we want the difference of $L$ is zero:
+\[
+\delta L = L(\vv r) - L(\vv r + \vv \epsilon) = 0
+\]
+This give us:
+\[
+\delta L = \sum \frac{\partial L}{\partial \vv r_i} \delta \vv r_i  = 0
+\]
+To understand it, think as it is the second term of Taylor expansion, or think it as $\frac{\delta L}{\delta \vv r_i} = \frac{\partial L}{\partial \vv r_i}$.
+
+In here $\delta \vv r_i$ is our $\vv \epsilon$, which is not zero. Thus we have:
+\[
+\sum \frac{\partial L}{\partial \vv r_i} = 0
+\]
+
+Recalled Lagrangian's equation
+\[
+\frac{\de}{\de t} \frac{\partial L}{\partial \dot{\vv r}_i} - \frac{\partial L}{\partial \vv r_i} = 0
+\]
+
+Thus we have
+\[
+0 = \sum \frac{\partial L}{\partial \vv r_i} = \frac{\de}{\de t} \sum\frac{\partial L}{\partial \dot{\vv r}_i} 
+\]
+That is, $\sum\frac{\partial L}{\partial \dot{\vv r}_i}$ is a constent vector. We defined this value as momentum $P$.
+
+Now we use $L = T(\vv v_i) - U(\vv r_i)$, we can find
+\[
+\sum \frac{\partial L}{\partial \dot{\vv r}_i} = \frac{\partial T}{\partial \dot{\vv r}_i} = \sum m_i\vv v_i
+\]
+Thus, we defined for each particle, $\vv p_i = m_i\vv v_i$.
+
+\subsubsection{Netforce: Newton Third Law}
+Recalled Newton Second Law
+\[
+\frac{\partial L}{\partial \vv r_i} = -\frac{\partial U}{\partial \vv r_i} = F
+\]
+
+And we just derived
+\[
+\sum \frac{\partial L}{\partial \vv r_i} = 0
+\]
+This gives us
+\[
+\sum \frac{\partial L}{\partial \vv r_i} = \sum F = 0
+\]
+that is, for closed system, netforce is zero. Particular, if we have only two particles, we find Newton Third Law.
+
+\subsection{Another Lagrangian's Equation}
+as above, we can defined:
+\[
+p_i = \frac{\partial L}{\partial \dot q_i} \ , \  F_i = \frac{\partial L}{\partial q_i}
+\]
+And now a Lagrangian's equation:
+\[
+\frac{\de}{\de t} \frac{\partial L}{\partial \dot{q}_i} = \frac{\partial L}{\partial q_i} 
+\]
+is just
+\[
+\dot p_i = F_i
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{eqnarray*}
+\end{document}

@@ -1,0 +1,303 @@
+\documentclass{article}
+\usepackage{blindtext}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{commath}
+\usepackage{siunitx}
+
+
+\usepackage[b]{esvect}
+
+\newcommand{\de}{\mathrm{d}}
+
+\begin{document}
+\title{Homework 5}
+\author{Xueqi Li}
+% \date{Feb 4, 2017}
+% \email{xueqi.li@stonybrook.edu}
+
+% \begin{abstract}
+% Consider a vector (given with respect to a fixed Cartesian basis). Here $t$ means time.
+% \[
+% \vv{r}(t) = \sin(\pi t)\hat{x} + \cos(\pi t)\hat{y} - \sqrt{7}\hat{z}
+% \]
+% \end{abstract}
+
+\maketitle
+
+\begin{enumerate}
+    \item Suppose there is a flat siece of glass whose front surface is at $x = 0$ and whose back surface is at $x = l$. Suppose as well that its index of refreaction depends only on the height: $n^2(y) = 1+(n_0^2-1)e^{-\abs{ay}}$. ($n(0) = n_n$, $\lim_{\abs{y}\rightarrow\infty} n(y) = 1$)
+    \begin{enumerate}
+        \item Write down the function taht need to be extremized to use Fermat's principle. You may restrict yourself to path that have postive $y$ in the glass.\\
+
+        From Fermat's principle, we want the time to be extremized.
+        \begin{align*}
+            v &= \frac{l}{t} \\
+            t &= \frac{l}{v} \\
+              &= \int_{y_1}^{y_2} \frac{\sqrt{\de x^2 + \de y^2}\,n(x,y)}{c} \\
+              &= \int_{y_1}^{y_2} \frac{\sqrt{\frac{\de x}{\de y}^2 + 1}\,n(x,y)}{c} \de y \\
+              &= \int_{y_1}^{y_2} \frac{1}{c}\sqrt{\dot x^2 + 1}\,n(x,y) \de y
+        \end{align*}
+        Thus, we have our function waiting to be extremized:
+        \[
+            L = \frac{1}{c}\sqrt{\dot x^2 + 1}\,n(x,y)
+        \]
+        When we at outside the glass, i.e., if $x \in (-\infty, 0) \cup (l,+\infty)$, $n(x,y) = 1$. When we are inside the glass, i.e., if $x \in (0,l)$, $n(x,y) = n(y) = \sqrt{+(n_0^2-1)e^{-\abs{ay}}}$.
+
+        \item Find the general form of the function that describes the path $x(y)$ of a light beam through the glass that starts at $x = 0$, $y = 0$ by extremizing the time the light takes. Be careful to find the intergrating constants: express it in terms of the angle the light makes to the surface at $x = 0$\\
+
+        We just plug the function in to the Lagrangian's equation:
+        \[
+            \frac{\de}{\de y} \frac{\partial L}{\partial \dot x} - \frac{\partial L}{\partial x} = 0
+        \]
+        Notice we have no $x$ in $L$, this gives us $\frac{\partial L}{\partial x} = 0$. Thus we have:
+        \begin{align*}
+            \frac{\de}{\de y} \frac{\partial L}{\partial \dot x} &= 0 \\
+            \frac{\de}{\de y} \frac{\partial}{\partial \dot x} \frac{1}{c}\sqrt{\dot x^2 + 1}\,n(x,y) &= 0\\
+            \frac{1}{c}\frac{\de}{\de y} \frac{\dot x}{\sqrt{\dot x^2 + 1}}n(x,y) &= 0
+        \end{align*}
+        This means $\frac{\dot x}{\sqrt{\dot x^2 + 1}}n(x,y)$ is a constant:
+        \[
+        \frac{\dot x}{\sqrt{\dot x^2 + 1}}n(x,y) = K
+        \]
+        Which gives us
+        \begin{align*}
+            \frac{\dot x}{\sqrt{\dot x^2 + 1}}n(x,y) &= K \\
+            \dot x n(x,y) &= K \sqrt{\dot x^2 + 1} \\
+            \dot x^2 n(x,y)^2 &= K^2 \dot x^2 + K^2\\
+            \dot x^2 (n^2 - K^2) &= K^2 \\
+            \dot x = \frac{K}{\sqrt{n^2 - K^2}}
+        \end{align*}
+        When we are in the glass and $y > 0$, we have
+        \begin{align*}
+            \frac{\de x}{\de y} &= \frac{K}{\sqrt{n^2 - K^2}} \\
+            \frac{\de x}{\de y} &= \frac{K}{\sqrt{1+(n_0^2-1)e^{-ay} - K^2}} \\
+            x &= \int \frac{K}{\sqrt{1+(n_0^2-1)e^{-ay} - K^2}} \de y\\
+        \end{align*}
+        This give us result:
+        \begin{align*}
+            -\frac{2K \tan^{-1}(\frac{\sqrt{n^2-K^2}}{\sqrt{K^2-1}})}{a\sqrt{K^2 - 1}} + J \ ,\text{if } K^2 > 1\\
+            -\frac{K \ln (\frac{\abs{\sqrt{n^2-K^2} - \sqrt{1-K^2}}}{\sqrt{n^2-K^2}+\sqrt{1-K^2}})}{a\sqrt{1-K^2}} + J\ ,\text{if }K^2 < 1
+        \end{align*}
+
+        From above we find
+        \[
+        \frac{\de x}{\de y} = \cot \theta = \frac{K}{\sqrt{n^2-K^2}}
+        \]
+        Thus,
+        \[
+        \tan \theta = \frac{1}{\cot \theta} = \frac{\sqrt{n^2(x,y)-K^2}}{K}
+        \]
+        where $\theta$ is the angle while the light is inside the glass.
+
+        In this problem, we are finding the solution on $x(y) = x(0) = 0$.
+        \[
+        \tan \theta = \frac{\sqrt{n^2-K^2}}{K}
+        \]
+        This give us
+        \begin{align*}
+            K^2 = \frac{n_0^2}{1+\tan^2\theta} = n^2 \cos^2\theta
+        \end{align*}
+        This give us the $K = n_0\cos\theta$ at $x=y=0$. Which is the constent we want to find depend on our angle in initial condiction.
+
+        Now we want to find the initial condiction for $J$. For $x = y = 0$, $n = n_0$, we have:
+
+        \begin{align*}
+            J &= \frac{2n_0 \cos\theta \tan^{-1}(\frac{\sqrt{n^2_0-n^2_0 \cos^2\theta}}{\sqrt{n^2_0 \cos^2\theta-1}})}{a\sqrt{n^2_0 \cos^2\theta - 1}} \ ,\text{if } K^2 > 1\\
+            J &= \frac{n_0 \cos\theta \ln (\frac{\abs{\sqrt{n_0^2-K^2} - \sqrt{1-n_0^2 \cos^2\theta}}}{\sqrt{n_0^2-n_0^2 \cos^2\theta}+\sqrt{1-n_0^2 \cos^2\theta}})}{a\sqrt{1-n_0^2 \cos^2\theta}} \ ,\text{if }K^2 < 1
+        \end{align*}
+        
+        \item Consider two pints, one at $x = -d$, $y = h$ and the second at $x = d + l$, $y = h$. Calculate the time it would take for light to go between the two points along a straight line, thaking into account the time delay in glass. Now consider a path between the two points that goes a little way higher a point $ h + \delta$ to the glass, then straight across the glass, and then back down to the other point, and calculate the itme this would take. Is this longer or shorter than the time the straight line takes. (You can try an example such as $ d = a = h = l = 1$, $n_0 = 2$ and plot the result as a function or $\delta$ or give an analytic argument)\\
+        
+        For our first path:
+        \begin{align*}
+            t = \frac{2d}{c} + \frac{l}{c} \sqrt{1+(n_0^2-1)e^{-ay}}
+        \end{align*}
+
+        For our second path:
+        \begin{align*}
+            t = \frac{2\sqrt{d^2 + \delta ^2}}{c} + \frac{l}{c} \sqrt{1+(n_0^2-1)e^{-a(y + \delta)}}
+        \end{align*}
+
+        Notice $\frac{2\sqrt{d^2 + \delta ^2}}{c} \approx \frac{2d}{c}$, while $\frac{l}{c} \sqrt{1+(n_0^2-1)e^{-a(y + \delta)}}< \frac{l}{c} \sqrt{1+(n_0^2-1)e^{-ay}}$. This means the higher path takes less time. It suprise me a little bit.
+
+    \end{enumerate}
+    \item Consider a particle of mass $M$ that is constrained to move on a cone defined by $z^2 = A^2(x^2+y^2)$ (A is a constant) with no external force other than the constraint on the particle. ($z > 0$)
+    \begin{enumerate}
+        \item Write down the Lagrangin in Cartesian coordinates with Lagrange multiplier that imposes the constraints.\\
+
+        \[
+        L = \frac{1}{2}m(\dot x^2 + \dot y^2 + \dot z^2) - \lambda (A^2(x^2+y^2) - z^2)
+        \]
+
+        \item  Find the Euler-Lagrange equations in Cartesion coordinates.\\
+
+        The Euler-Lagrange equations is given as
+        \[
+        \frac{\de}{\de t}\frac{\partial L}{\partial \dot q} = \frac{\partial L}{\partial q}
+        \]
+        For us, we have:
+        \begin{align*}
+            x: \quad \frac{\de}{\de t}\frac{\partial L}{\partial \dot x} &= \frac{\partial L}{\partial x}\\
+                     \frac{\de}{\de t}m\dot x &= -2\lambda A^2 x\\
+                     m\ddot x &= -2\lambda A^2 x\\
+            y: \quad \frac{\de}{\de t}\frac{\partial L}{\partial \dot y} &= \frac{\partial L}{\partial y}\\
+                     \frac{\de}{\de t}m\dot y &= -2\lambda A^2 y \\
+                     m\ddot y &= -2\lambda A^2 y\\
+            z: \quad \frac{\de}{\de t}\frac{\partial L}{\partial \dot z} &= \frac{\partial L}{\partial z}\\
+                     \frac{\de}{\de t}m\dot z &= -2\lambda z\\
+                     m\ddot z &= -2\lambda z
+        \end{align*}
+        That is we have following equations:
+        \begin{align*}
+            m\ddot x &= -2\lambda A^2 x\\
+            m\ddot x &= -2\lambda A^2 y\\
+            m\ddot z &= -2\lambda z
+        \end{align*}
+        \item Rewrite the Lagrangion in cyindrical polar coordinates. Solve the constrant for $z$ and substitue the solution into the Lagrangian to get Lagrangian $L(R,\dot R, \dot \phi)$\\
+
+            For cylindrical, we have
+            \[\de l^2 = \de r^2 + r^2 \de \phi^2 + \de z^2 \Rightarrow \vv{v}^2 = \dot r^2 + r^2 \dot \phi^2 + \dot z ^2\]
+            Thus we have Lagrangian as:
+            \[
+            L = \frac{1}{2}m(\dot r^2 + r^2 \dot \phi^2 + \dot z ^2) - \lambda (A^2r^2 - z^2)
+            \]
+            Now we substitute $ z^2 = A^2 (x^2 + y^2) = A^2 r^2$, $\dot z^2 = A^2 \dot r^2$
+            \[
+            L = \frac{1}{2}m(\dot r^2 + r^2 \dot \phi^2 + A^2 \dot r^2) = \frac{1}{2}m((1+A^2)\dot r^2 + r^2 \dot \phi^2)
+            \]
+            \item Find teh Euler-Lagrange equations that follow from $L$ that you found.\\
+
+            \begin{align*}
+                r: \qquad \frac{\de}{\de t}\frac{\partial L}{\partial \dot r} &= \frac{\partial L}{\partial r}\\
+                          m(1+A^2)\ddot r &= mr\dot \phi^2 \\
+                \phi: \qquad \frac{\de}{\de t}\frac{\partial L}{\partial \dot \phi} &= \frac{\partial L}{\partial \phi}\\
+                mr^2\dot \phi &= L_z
+            \end{align*}
+            \item Find the effective potential for $r$ in terms of $L_z$, the z-component of the angular momentum.
+
+            From above we find
+            \[
+            mr^2\dot \phi = L_z
+            \]
+            this give us
+            \[
+            \dot \phi = \frac{L_z}{mr^2}
+            \]
+            which give us
+            \begin{align*}
+                m(1+A^2)\ddot r &= \frac{L_z^2}{mr^3} \\
+                m\ddot r &= \frac{L_z^2}{(1+A^2)mr^3} = F\\
+                U_\text{eff} &= -\int \frac{L_z^2}{(1+A^2)mr^3} \de r\\
+                  &=\frac{L_z^2}{(1+A^2)m} \frac{1}{2r^2}
+            \end{align*}
+    \end{enumerate}
+    \item Consider the same system as above, but now turn on a gravitational force.
+    \begin{enumerate}
+        \item Write the Lagrangin in cylindrial polar coordinates. Solve the constraint for $z$ and substitute the solution into the Lagrangian to get a Lagrangian $L(R, \dot R, \dot \phi)$\\
+
+        \[
+            L = \frac{1}{2}m((1+A^2)\dot r^2 + r^2 \dot \phi^2) - mgAr
+        \]
+        \item Find the Euler-Lagrange equations that follow from $L$ you find:
+        \begin{align*}
+            r: \qquad \frac{\de}{\de t}\frac{\partial L}{\partial \dot r} &= \frac{\partial L}{\partial r}\\
+                          m(1+A^2)\ddot r &= mr\dot \phi^2 - mgA \\
+                \phi: \qquad \frac{\de}{\de t}\frac{\partial L}{\partial \dot \phi} &= \frac{\partial L}{\partial \phi}\\
+                mr^2\dot \phi &= L_z
+        \end{align*}
+        \item Find the effective potential for $R$ in terms of $L_z$, the $z$-component of the angular momentum. Sketch the effective potential ($z>0$)
+
+        From above we find:
+        \begin{align*}
+            m(1+A^2)\ddot r &= mr\dot \phi^2 - mgA \\
+            m\ddot r &= \frac{L_z^2 - gAm^2r^3}{mr^3(1+A^2)} = F_r\\
+            U_\text{eff} &= -\int \frac{L_z^2 - gAm^2r^3}{mr^3(1+A^2)} \de r \\
+                         &= \frac{2Agm^2r^3 + L^2}{2(A^2+1)mr^2}
+        \end{align*}
+
+        \item For a given $L_z$, what is the equilibrium value of $r$?\\
+
+            For equilibrium value, we want the force is zero:
+            \[
+            \frac{L_z^2 - gAm^2r^3}{mr^3(1+A^2)} = F_r = 0
+            \]
+            the solution is given as
+            \[
+            r= (\frac{L_z^2}{Agm^2})^{\frac{1}{3}}
+            \]
+
+        \item Is the equilibtium stable or unstable?\\
+
+        \begin{align*}
+            -\frac{\partial}{\partial r} \frac{L_z^2 - gAm^2r^3}{mr^3(1+A^2)} = \frac{3L_z^2}{(A^2 + 1)mr^4} > 0
+        \end{align*}
+        This means we have an stable equilibtium.
+
+
+    \end{enumerate}
+    \item Consider a bead of mass $m$ constrained to move along a helical wire described in cylindrical coordinates by the equations $r = r_0$, and $z = \beta \phi$. Let gravity act on the bead.
+    \begin{enumerate}
+        \item Write down the Lagrangian - since the constraints are so simple, there is no need to use Lagrange multipliers, and you can simply use $z$ as your variable.\\
+
+        \[
+        L = \frac{1}{2}m(\dot r^2 + r^2 \dot \phi^2 + \dot z^2) - mgz
+        \]
+        Plug the constraints:
+        \[
+        L = \frac{1}{2}m(r_0^2 \dot \phi^2 + \beta^2\dot \phi^2) - mg\beta\phi
+        \]
+        \item Write down the Euler-Lagrange equation. Find the general solution for arbitrary initial $z_0$ and $\dot z_0$. How does this differ from a freely falling bead?\\
+
+        \begin{align*}
+            r: \qquad \frac{\de}{\de t}\frac{\partial L}{\partial \dot r} &= \frac{\partial L}{\partial r}\\
+                      0 &= 0\\
+            \phi: \qquad \frac{\de}{\de t}\frac{\partial L}{\partial \dot \phi} &= \frac{\partial L}{\partial \phi}\\
+                        \frac{\de}{\de t}(r_0^2m\dot \phi + m\beta^2 \dot \phi) &= -mg\beta\\
+                        \ddot \phi &= -\frac{mg\beta}{m(r_0^2+\beta^2)}
+        \end{align*}
+        Now we want to find $\dot \phi$ and $\phi$
+        \begin{align*}
+            \dot \phi &= -\frac{mg\beta}{m(r_0^2+\beta^2)}t + \dot \phi_0
+        \end{align*}
+        and
+        \begin{align*}
+            \phi &= -\frac{mg\beta}{m(r_0^2+\beta^2)} \frac{t^2}{2} + \dot \phi_0t + \phi_0
+        \end{align*}
+        now we know that $z = \beta \phi$
+        \begin{align*}
+            \dot z &= -\beta\frac{mg\beta}{m(r_0^2+\beta^2)}t + \dot z_0 \\
+            z &= -\beta\frac{mg\beta}{m(r_0^2+\beta^2)} \frac{t^2}{2} + \dot z_0t + z_0
+        \end{align*}
+
+        Now we see that for a free falling
+        \[
+            \dot z = -mgt + \dot z_0
+        \]
+
+
+
+
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{eqnarray*}
+\end{document}

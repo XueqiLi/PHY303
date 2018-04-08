@@ -1,0 +1,291 @@
+\documentclass{article}
+\usepackage{blindtext}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{commath}
+\usepackage{siunitx}
+
+\usepackage[urw-garamond]{mathdesign}
+\usepackage[T1]{fontenc}
+
+\usepackage[b]{esvect}
+
+\newcommand{\de}{\mathrm{d}}
+
+\begin{document}
+\title{Homework 3}
+\author{Xueqi Li}
+% \date{Feb 4, 2017}
+% \email{xueqi.li@stonybrook.edu}
+
+% \begin{abstract}
+% Consider a vector (given with respect to a fixed Cartesian basis). Here $t$ means time.
+% \[
+% \vv{r}(t) = \sin(\pi t)\hat{x} + \cos(\pi t)\hat{y} - \sqrt{7}\hat{z}
+% \]
+% \end{abstract}
+
+\maketitle
+
+\begin{enumerate}
+    \item A charged particle with mass $\mu$ and positive charge $e$ moves in a uniform electric and magnetic field $\vv{E} = E \hat{x}$ and $\vv{B} = B \hat{x}$. The Lorentz force law tells us that $\vv{F} = e(\vv{E}+\vv{v}\times\vv{B})$.
+    \begin{enumerate}
+        \item Write the equations of motion in cartesian coordinates.\\
+
+        From $\vv{F} = m a$ we can write:
+        \[
+        e(\vv{E}+\dot{\vv{r}}\times\vv{B}) = m \ddot{\vv{r}}
+        \]
+        Now we can plug $\vv{E}$ and $\vv{B}$ and $\vv{r} = x\hat{x} + y\hat{y} + z\hat{z}$:
+        \begin{eqnarray*}
+        e(E \hat{x}+\frac{\de}{\de t}(x\hat{x} + y\hat{y} + z\hat{z})\times\vv{B}\hat{x}) &=& m \frac{\de^2}{\de t^2} (x\hat{x} + y\hat{y} + z\hat{z}) \\
+        e(E \hat{x} + B\dot{z}\hat{y}-B\dot{y} \hat{z} ) &=& \mu (\ddot{x}\hat{x} + \ddot{y}\hat{y} + \ddot{z}\hat{z}) \\
+        \end{eqnarray*}
+        Thus, we have:
+        \begin{eqnarray*}
+        eE = \mu \ddot{x} \\
+        eB\dot{z} = \mu \ddot{y} \\
+        -eB\dot{y} = \mu \ddot{z}
+        \end{eqnarray*}
+        \item Solve the equations\\
+
+        Solve $x$: 
+        \begin{eqnarray*}
+        eE &=& \mu \ddot{x} \\
+        \frac{e}{\mu}E &=& \frac{\de^2 x}{\de t^2} \\
+        \frac{e}{\mu}E \iint \de t^2 &=& x \\
+        \frac{e}{\mu}E \int (t + C)\de t &=& x \\
+        x &=& \frac{e}{\mu}E (\frac{t^2}{2} + C_1t + C_2) \\
+        x &=& \frac{e}{\mu}E \frac{t^2}{2} + \frac{e}{\mu}E C_1t + x_0 \\
+        x &=& \frac{e}{\mu}E \frac{t^2}{2} + v_x(0)t + x(0)
+        \end{eqnarray*}
+
+        Solve $y$ and $z$:
+        \begin{eqnarray*}
+        \dot{y} &=& -\frac{\mu}{eB}\ddot{z}\\
+        0 &=& -\frac{\mu^2}{eB} \frac{\de}{\de t} \ddot{z} - eB\dot{z} \\
+        0 &=& -\frac{\de}{\de t} \ddot{z} - \frac{e^2B^2}{\mu^2}\dot{z} \\
+        0 &=& [D^3 + \frac{e^2B^2}{\mu^2} D](z) \\
+        0 &=& [D(D+i\sqrt{\frac{e^2B^2}{\mu^2}})(D-i\sqrt{\frac{e^2B^2}{\mu^2}})](z)
+        \end{eqnarray*}
+        This difference equation have solution:
+        \begin{eqnarray*}
+        z &=& C_1 + C_2e^{\frac{eB}{\mu}it}+C_3 e^{-\frac{eB}{\mu}it}\\
+        &=& C_1 + C_2\cos(\frac{eB}{\mu}t)+ C_3\sin(\frac{eB}{\mu}t)
+        \end{eqnarray*}
+
+        Now Solve $y$:
+        \begin{eqnarray*}
+        \dot{z} &=&\frac{\mu}{eB}\ddot{y}\\
+        -eB\dot{y} &=&  \frac{\mu^2}{eB}\dddot{y} \\
+        -\frac{e^2B^2}{\mu^2}\dot{y} &=&  \dddot{y}\\
+        0 &=& \dddot{y} + \frac{e^2B^2}{\mu^2}\dot{y}
+        \end{eqnarray*}
+        Notice this is same as $z$. Thus we can have the solution:
+        \begin{eqnarray*}
+        y &=& C_1 + C_2e^{\frac{eB}{\mu}it}+C_3 e^{-\frac{eB}{\mu}it}\\
+        &=& C_1 + C_2\cos(\frac{eB}{\mu}t)+ C_3\sin(\frac{eB}{\mu}t)
+        \end{eqnarray*}
+
+        Now let say it starting moving at point $(x_0,y_0,z_0)$ with velocity $(\dot{x}_0,\dot{y}_0,\dot{z}_0)$. Thus at this time, $t = 0$. Thus we have for $z$:
+        \begin{eqnarray*}
+        z_0 &=& C_1 + C_2 \\
+        \dot{z}_0 &=& C_3
+        \end{eqnarray*}
+        Same as $y$:
+        \begin{eqnarray*}
+        y_0 &=& C_1 + C_2 \\
+        \dot{y}_0 &=& C_3
+        \end{eqnarray*}
+        Notice the constent term for $z$ and $y$ are not the same.
+        \item Sketch the particle's motion if it starts at the origin with $\vv{v}_0 = v_0 \hat{y}$
+        \\
+        \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+        % \\
+
+
+        % \begin{eqnarray*}
+        % \dot{y} = -\frac{\mu\ddot{z}}{eB}\\
+        % eB\dot{z} = \mu \frac{\de}{\de t} (-\frac{\mu\ddot{z}}{eB}) \\
+        % eB\dot{z} = \frac{-\mu^2}{eB} \dddot{z} \\
+        % -\frac{e^2B^2}{\mu^2} \frac{\de z}{\de t} = \frac{\de^3 z}{\de t^3}\\
+        % -\frac{e^2B^2}{\mu^2} \de z = \frac{\de^3 z}{\de t^2} \\
+        % -\frac{e^2B^2}{\mu^2} (z + C_1) = \frac{\de^2 z}{\de t^2} \\
+        % -\frac{e^2B^2}{\mu^2} \iint(z + C_1)\de t^2 = z
+        % % \frac{e^2B^2}{\mu^2}\dot{z} = \frac{\de ^2 \dot{z}}{\de t ^2} \\
+        % % \frac{e^2B^2}{\mu^2}\iint \dot{z} \de t^2 = \dot{z} \\
+        % \end{eqnarray*}
+    \end{enumerate}
+    \item Two people, one with mass $m_1$ and the other with mass $m_2$, stand on a stationary sled with mass $M$ on a frozen lake. Assume that the ice is frictionless.
+    \begin{enumerate}
+        \item The first person jumps off the sled with a speed $u$ relative to the sled. What is his speed? Use conservation of momentum to find the speed of the sled (which is still carrying the second person).\\
+
+        The momentum is conserve. Thus we have $p_i = p_f = 0$. After the jump, we have
+        \begin{eqnarray*}
+        p_1 &=& m_1 u \\ 
+        p_m &=& (M + m_2) v
+        \end{eqnarray*}
+        where $p_1 + p_m = p_f$. Thus we can have euqation:
+        \begin{eqnarray*}
+        (M + m_2) v &=& - m_1 u \\ 
+        \abs{v} &=& \frac{m_1 u}{M + m_2}
+        \end{eqnarray*}
+        Thus we have the speed of sled is $\frac{m_1 u}{M}$, the speed of $m_1$ is $u$.
+        \item Now the second person jumps with the same speed $u$ relative to the sled. What is his speed? What is the the speed of the sled? \\
+
+        Before the jump, $v = - \frac{m_1 u}{M + m_2}$. Thus, change the frame to the earth, we have $v_2 = u - \frac{m_1 u}{M + m_2}$.
+
+        In the frame of the sled. $p_i = p_f = 0$. Same as question a), we can have
+        \begin{eqnarray*}
+        M v_s &=& - m_2 u \\ 
+        v_s &=& -\frac{m_2 u}{M }
+        \end{eqnarray*}
+        In the sled frame. And now again change to earth frame:
+        \[
+        v = -\frac{m_2 u}{M} - \frac{m_1 u}{M + m_2}
+        \]
+        \item What is the change in the total kinetic energy of the two people and the sled?\\
+
+        Before the jump, $KE_i = 0$. Thus $\Delta KE = KE_f$. Thus we have:
+        \[
+        KE = \frac{1}{2}\left[m_1u^2 + m_2 \left(u - \frac{m_1 u}{M + m_2}^2\right)^2 + M\left(\frac{m_2 u}{M} + \frac{m_1 u}{M + m_2}\right)^2\right]
+        \]
+        \item If we assume that $m_1 + m_2 = m_\text{tot}$ is held constant, we can write $m_1 = am_\text{tot}$ and $m_2 = (1 - a)m_\text{tot}$. What value of a maximizes the speed of the sled? \\
+
+        We want to maximizes following function:
+        \[
+        v = \frac{(1 - a)m_\text{tot} u}{M} + \frac{am_\text{tot} u}{M + (1 - a)m_\text{tot}}
+        \]
+        To do so we only need to find $a$ such that $\dot{v} = 0$:
+        \begin{eqnarray*}
+        \dot{v} &=& \frac{\de}{\de a}\frac{(1 - a)m_\text{tot} u}{M} + \frac{\de}{\de a}\frac{am_\text{tot} u}{M + (1 - a)m_\text{tot}} \\
+        \dot{v} &=& \frac{\de}{\de a}\frac{am_\text{tot}u}{M+(1-a)mt} - \frac{um_\text{tot}}{M} \\
+        0 &=& \frac{\de}{\de a}\frac{am_\text{tot}u}{M+(1-a)mt} - \frac{um_\text{tot}}{M} \\
+        \frac{\de}{\de a}\frac{am_\text{tot}u}{M+(1-a)m_\text{tot}} &=& \frac{um_\text{tot}}{M} \\
+        \frac{\de}{\de a}\frac{a}{M+(1-a)m_\text{tot}} &=& \frac{1}{M} \\
+        \frac{M+m_\text{tot}}{(-am_\text{tot}+M+m_\text{tot})} &=& \frac{1}{M} \\
+        a &=& \frac{\sqrt{M^2+Mm_\text{tot}}+M+m_\text{tot}}{m_\text{tot}}
+        \end{eqnarray*}
+        Notice this $a$ might larger than 1. However, knowing this give us a max value, $v$ is incress in [0,1], we can take $a = 1$ or close to 1.
+    \end{enumerate}
+    \item Consider a force $\vv{F} = 2x^2\hat{x}-xy\hat{y}$.
+    \begin{enumerate}
+        \item How much work would this force do along a path that goes along the x-axis from the origin to the point $\hat{x}$ and then up parallel to the y-axis to the point $\hat{x}+\hat{y}$?\\
+
+        \begin{eqnarray*}
+        W &=& \int_\gamma F \cdot \de l \\
+        W &=& \int_{(0,0)}^{(1,0)} (2x^2\hat{x}-xy\hat{y}) \cdot \de l +  \int_{(1,0)}^{(1,1)} (2x^2\hat{x}-xy\hat{y}) \cdot \de l \\
+        W &=& \int_0^1 (2x^2) \de x +  \int_0^1 (-y) \de y \\
+        W &=& \frac{2}{3} - \frac{1}{2} = \frac{1}{6}
+        \end{eqnarray*}
+        \item How much work would this force do along a path given by $y = x^2$, that is, along the path $x\hat{x} + x^2\hat{y}$, again from the origin to the point $\hat{x}+\hat{y}$? Is the force conservative?\\
+
+        \begin{eqnarray*}
+        W &=& \int_\gamma F \cdot \de l \\
+        &=& \int_0^1 (2x^2 - xy \frac{\de}{\de x} x^2)\de x \\
+        &=& \int_0^1 (2x^2 - xx^2 2x)\de x \\
+        &=& \int_0^1 (2x^2 - 2x^4)\de x \\
+        &=& \frac{4}{15}
+        \end{eqnarray*}
+        While two work are not the same, the force is not conservative.
+        \item For two constants a and b, how much work would this force do along a path $t^a\hat{x}+t^b\hat{y}$, again from the origin to the point $x\hat{x} + x^2\hat{y}$? \\
+
+        \begin{eqnarray*}
+        W &=& \int_\gamma F \cdot \de l \\
+        &=& \int_0^1 (2x^2\frac{\de}{\de t}t^a - xy \frac{\de}{\de t}t^b) \de t\\
+        &=& \int_0^1 (2ax^2t^{a-1} - bxy t^{b-1} \de t \\
+        &=& \int_0^1 (2at^{2a}t^{a-1} - bt^{a+b} t^{b-1} \de t \\
+        &=& \int_0^1 2at^{2a+a-1}\de t - \int_0^1 bt^{a+2b-1}\de t \\
+        &=& \frac{2}{3} - \frac{b}{a+2b}
+        \end{eqnarray*}
+    \end{enumerate}
+        \item Consider a frictionless table with a hole in the center. A string passes through the hole. On the table, attached to the string, there is mass $m$ moving in a circle with radius $r_0$ and angular velocity $\omega_0$. The string has just enough tension to keep the mass moving around in a circle.
+        \begin{enumerate}
+            \item What is angular momentum $L_0$ of the mass? What is its kinetic energy $KE_0$?\\
+
+            To find the angular momentum:
+            \begin{eqnarray*}
+            L_0 &=& I\omega \\
+            &=& mr^2 \omega
+            \end{eqnarray*}
+            To find the kinetic energy:
+            \begin{eqnarray*}
+            KE &=& \frac{1}{2} m v^2\\
+            &=& \frac{1}{2} m \omega^2r^2
+            \end{eqnarray*}
+            where at this time $r = r_0$, $\omega = \omega_0$.
+            \item The string is now gradually shortened. What is the angular momentum $L(r)$ as a function of $r$? What is the angular velocity $\omega(r)$ as a function of $r$? What is the kinetic energy energy $KE(r)$ as a function of r? \\
+
+            Notice the angular momentum conserve:
+            \[
+            L(r) = L_0 = mr_0^2 \omega_0
+            \]
+            Thus we have
+            \begin{eqnarray*}
+            mr_0^2 \omega_0 &=& I(r) \omega(r) \\
+            mr_0^2 \omega_0 &=& mr^2 \omega(r) \\
+            \omega(r) = \frac{r_0^2 \omega_0}{r^2}
+            \end{eqnarray*}
+            To find the kinetic energy:
+            \begin{eqnarray*}
+            KE &=& \frac{1}{2} m v^2\\
+            &=& \frac{1}{2} m (\frac{r_0^2 \omega_0}{r^2})^2r^2
+            \end{eqnarray*}
+            \item What is the tension in the string (the force on the mass) needed to keep the motion circular as a function of $r$? What is the work done by this force as the radius changes from $r_0$ to $r$? How does this compare to the change in the kinetic energy?\\
+
+            The force is point to the center and given as:
+            \[
+            F = ma = m \frac{v^2}{r} = m \frac{r_0^4 \omega_0^2}{r^3}
+            \]
+            Now we can calculate the work:
+            \begin{eqnarray*}
+            W &=& \int_{r_0}^r F \cdot \de r \\
+            W &=& \int_{r_0}^r m \frac{r_0^4 \omega_0^2}{r^3} \de r \\
+            W &=& mr_0^4\omega_0^2 \int_{r_0}^r \frac{1}{r^3} \de r \\
+            W &=& \frac{1}{2}mr_0^4\omega_0^2 (\frac{1}{r^2} - \frac{1}{r_0^2})
+            \end{eqnarray*}
+            And we can compute the kinetic energy:
+            \[
+            \Delta KE = \frac{1}{2} m (\frac{r_0^2 \omega_0}{r^2})^2r^2 - \frac{1}{2} m \omega_0^2r_0^2 = \frac{1}{2}m \omega_0^2r_0^2(\frac{r_0^2}{r^2} - 1) = W
+            \]
+        \end{enumerate}
+        \item Calculate the center of mass for a cylindrically symmetric bowl made of clay with uniform density $\rho$ and with a shape described by an inner and an outer curve. The outer curve goes from $z \in [0,1]$ and is given by
+        \[
+        R_\text{out} = \frac{1}{2} + \sqrt{z}
+        \]
+        The inside of the bowl goes from $z \in [\frac{1}{8}.1]$ and is given by
+        \[
+        R_\text{in} = \frac{3}{8} + \sqrt{z-\frac{1}{8}}
+        \]\\
+
+        First find the mass:
+        \begin{eqnarray*}
+        M &=& \rho V \\
+        &=& \rho [\int_0^1 (\frac{1}{2} + \sqrt{z})^2\pi \de z - \int_0^1 (\frac{3}{8} + \sqrt{z-\frac{1}{8}})^2\pi \de z]\\
+        &=& \rho \pi [\int_0^1 (\frac{1}{2} + \sqrt{z})^2 \de z - \int_0^1 (\frac{3}{8} + \sqrt{z-\frac{1}{8}})^2 \de z]
+        \end{eqnarray*}
+        Now we have:
+        \begin{eqnarray*}
+        z_{cm} = \frac{1}{M} [\int_0^1 (\frac{1}{2} + \sqrt{z})^2\pi z \de z - \int_0^1 (\frac{3}{8} + \sqrt{z-\frac{1}{8}})^2\pi z \de z]
+        \end{eqnarray*}
+    \end{enumerate}
+
+
+
+
+% \begin{eqnarray*}
+\end{document}

@@ -1,0 +1,305 @@
+\documentclass{article}
+\usepackage{blindtext}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{commath}
+\usepackage{siunitx}
+
+
+\usepackage[b]{esvect}
+
+\newcommand{\de}{\mathrm{d}}
+
+\begin{document}
+\title{Homework 4}
+\author{Xueqi Li}
+% \date{Feb 4, 2017}
+% \email{xueqi.li@stonybrook.edu}
+
+% \begin{abstract}
+% Consider a vector (given with respect to a fixed Cartesian basis). Here $t$ means time.
+% \[
+% \vv{r}(t) = \sin(\pi t)\hat{x} + \cos(\pi t)\hat{y} - \sqrt{7}\hat{z}
+% \]
+% \end{abstract}
+
+\maketitle
+
+\section{Problem 4.38}
+Consider the simple pendulum of Problem 4.34. You can get an expression for the pendulum's period (good for large oscillations as well as small) using the method discussed in connection with (4.57), as follows. Using (4.101) for the PE, find $\dot{\phi}$ as a fundtion of $\phi$. Next use (4.57). in the form $t = \int \de \frac{\phi}{\dot{\phi}}$, to write the time for the pendulum to travel from $\phi = 0$ to its maximum value (the amplitude) $\Phi$. Because this time is a quarter of the period $\tau$, you can now write down the period. Show that
+\[
+\tau = \tau_0 \frac{1}{\pi} \int_0^\Phi \frac{\de \phi}{\sqrt{\sin^2(\frac{\Phi}{2})-\sin^2(\frac{\phi}{2})}} = \tau_0 \frac{2}{\pi}\int_0^1\frac{\de u}{\sqrt{1-u^2}\sqrt{1-A^2u^2}}
+\]
+where $\tau_0$ is the period (4.102) (Problem 4.34) for small oscillations and $A = \sin\frac{\Phi}{2}$. (To get the first epression you will need to use the trig identity for $1-\cos\phi$ in terms of $\sin^2\frac{\phi}{2}$). To get the second you need to make the substitution $\sin\frac{\phi}{2} = Au$.) These integrals cannot be evaluated in terms of elementrary functions. However, the second integral is a standard integral called the \textit{complete elliptic integral of the first kind}, sometimes denoted $K(A^2)$, whose values are tabulated and are known to computer software such as Mathematica (which calls it EllipticK$(A^2)$).
+\\
+
+From the textbook we have 
+\[
+U(\phi) = mgl (1-\cos\phi)
+\]
+knowing that $\sin^2\frac{\phi}{2} = \frac{1-\cos\phi}{2}$, i.e., $1-\cos\phi = 2\sin^2\frac{\phi}{2}$, we can have a alter from as:
+\[
+U(\phi) = 2mgl \sin^2\frac{\phi}{2}
+\]
+Now we can find the total $E$ as $U_{\text{max}}$ where $\phi = \Phi$:
+\[
+E = 2mgl \sin^2\frac{\Phi}{2}
+\]
+To find the $\dot{\phi}$ as a function of $\phi$, first we have:
+\[
+v = \dot{\phi}l
+\]
+and we have $K = \frac{1}{2} mv^2 = \frac{1}{2}m\dot{\phi}^2l^2$. Knowing $E = U + K$, we have a euqation as following:
+\[
+2mgl \sin^2\frac{\Phi}{2} = \frac{1}{2}m\dot{\phi}^2l^2 + 2mgl \sin^2\frac{\phi}{2}
+\]
+easy to find $\dot\phi$ by moving all other term to the other side:
+\[
+\dot{\phi} = 2\sqrt{\frac{g}{l}}\sqrt{\sin^2\frac{\Phi}{2} - \sin^2\frac{\phi}{2}}
+\]
+
+From thextbook we have following:
+\[
+t_f - t_i = \int_{x_i}^{x_f}\frac{\de x}{\dot{x}} = \int_{\theta_i}^{\theta_f}\frac{\de \theta}{\dot{\theta}}
+\]
+plug our euqation in:
+\[
+t = \int_0^\Phi \frac{\de \theta}{2\sqrt{\frac{g}{l}}\sqrt{\sin^2\frac{\Phi}{2} - \sin^2\frac{\phi}{2}}} = \frac{1}{2}\sqrt{\frac{l}{g}}\int_0^\Phi\frac{\de \theta}{\sqrt{\sin^2\frac{\Phi}{2} - \sin^2\frac{\phi}{2}}}
+\]
+now notice $\tau_0 = 2\pi \sqrt{\frac{l}{g}}$. Thus we have 
+\[
+t = \tau_0 \frac{1}{\pi}\int_0^\Phi\frac{\de \theta}{\sqrt{\sin^2\frac{\Phi}{2} - \sin^2\frac{\phi}{2}}}
+\]
+
+For a small oscillation, let $A = \sin\frac{\Phi}{2}$, i.e., $\sin\frac{\phi}{2} = Au$, we have $A\de u = \frac{1}{2}\cos\frac{\phi}{2}\de \phi$, i.e., $\de \phi = \frac{2Au}{\cos\frac{\phi}{2}}$. Now notice that $\sqrt{1-A^2u^2} = \cos\frac{\phi}{2}$. Plug them in the the equation, we have:
+\[
+t = \tau_0 \frac{2}{\pi}\int_0^1\frac{\de u}{\sqrt{1-u^2}\sqrt{1-A^2u^2}}
+\]
+\section{Other Problems}
+\begin{enumerate}
+    \item Calculate the gradient in cartesian coordinates of the following function:
+    \begin{enumerate}
+        \item $f(\vv{r}) = \alpha\abs{r}^2 = \alpha(x^2+y^2+z^2)^{\frac{p}{2}}$, where $p$ and $\alpha$ are constants。
+        \begin{align*}
+        \nabla f &= \alpha \left[\hat{x}\frac{\partial}{\partial x} (x^2+y^2+z^2)^{\frac{p}{2}} + \hat{y}\frac{\partial}{\partial y} (x^2+y^2+z^2)^{\frac{p}{2}} + \hat{z}\frac{\partial}{\partial z} (x^2+y^2+z^2)^{\frac{p}{2}}\right]\\
+        &= \alpha \left[\hat{x}\frac{p}{2}(x^2+y^2+z^2)^{\frac{p}{2}-1}2x + \hat{y}\frac{p}{2}(x^2+y^2+z^2)^{\frac{p}{2}-1}2y + \hat{z}\frac{p}{2}(x^2+y^2+z^2)^{\frac{p}{2}-1}2z\right]
+        \end{align*}
+
+        \item $f(\vv{r}) = \beta x^2y^3z^4$
+        \begin{align*}
+        \nabla f &= \beta \left[\hat{x}\frac{\partial}{\partial x} x^2y^3z^4 + \hat{y}\frac{\partial}{\partial y} x^2y^3z^4 + \hat{z}\frac{\partial}{\partial z} x^2y^3z^4\right]\\
+        &= \beta (\hat{x}2xy^3z^3 + \hat{y}3y^2x^2z^4+\hat{z}4z^3x^2y^3)
+        \end{align*}
+
+        \item $f(\vv{r}) = \gamma (x^2+y^2)^{\frac{p}{2}}+\alpha z^q$
+        \begin{align*}
+        \nabla f &= \left[\hat{x}\frac{\partial}{\partial x} \gamma (x^2+y^2)^{\frac{p}{2}} + \hat{y}\frac{\partial}{\partial y} \gamma (x^2+y^2)^{\frac{p}{2}} + \hat{z}\frac{\partial}{\partial z} \alpha z^q\right] \\
+        &=\hat{x}\gamma p(x^2+y^2)^{\frac{p}{2}-1}x+ \hat{y}\gamma p(x^2+y^2)^{\frac{p}{2}-1}y +\hat{z}\alpha q z^{q-1}
+        \end{align*}
+    \end{enumerate}
+
+
+    \item Calculate the gradients in problem 1 in cylindrical coordinates and spherical polar coordinates
+    \begin{enumerate}
+        \item $f(\vv{r}) = \alpha\abs{r}^2 = \alpha(x^2+y^2+z^2)^{\frac{p}{2}}$
+        \begin{enumerate}
+            \item Cylindrical coordinates
+            First we transform it into cylindrical coordinates:
+            \[
+            f(\vv{r}) = \alpha(r^2+z^2)^{\frac{p}{2}}
+            \]
+            Next we compute the gradients
+            \begin{align*}
+            \nabla f &= \sum_{r, (\frac{1}{r})\theta, z} \frac{\partial}{\partial i} \alpha(r^2+z^2)^{\frac{p}{2}} \hat{i}\\
+            &= \alpha p r(r^2 + z^2)^{\frac{p}{2}-1}\hat{r} + \alpha p z(r^2 + z^2)^{\frac{p}{2}-1}\hat{z}
+            \end{align*}
+            \item Spherical coordinates 
+            First we transform it into spherical coordinates:
+            \[
+            f(\vv{r}) = \alpha r^p
+            \]
+            Next we compute the gradients
+            \begin{align*}
+            \nabla f &= \alpha p r^{p-1} \hat{r}
+            \end{align*}
+        \end{enumerate}
+
+        \item $f(\vv{r}) = \beta x^2y^3z^4$
+        \begin{enumerate}
+            \item Cylindrical coordinates
+            First we transform it into cylindrical coordinates:
+            \[
+            f(\vv{r}) = \beta (r\cos\theta)^2(r\sin\theta)^3z^4
+            \]
+            Next we compute the gradients
+            \begin{align*}
+            \nabla f &= \beta 5r^4 \cos^2\theta \sin^3\theta z^4 \hat{r} + \frac{r^4z^4\beta}{4} \sin^2\theta(7\cos\theta+5\cos3\theta) \hat{\theta} + 4\beta r^5 \cos^2\theta\sin^3\theta z^3 \hat{z}
+            \end{align*}
+            \item Spherical coordinates 
+            First we transform it into spherical coordinates:
+            \begin{align*}
+                f(\vv{r}) &= \beta (r\sin\theta\cos\phi)^2(r\sin\theta\sin\phi)^3(r\cos\theta)^4 \\
+                &= \beta r^9\sin^5\theta\cos^4\theta\cos^2\phi\sin^3\phi
+            \end{align*}
+            Next we compute the gradients
+            \begin{align*}
+            \nabla f = &9\beta r^8\sin^5\theta\cos^4\theta\cos^2\phi\sin^3\phi \hat{r} + \\
+            &\frac{1}{2r}\beta r^9\cos^2\phi\sin^3\phi\sin^4\theta\cos^3\theta(9\cos2\theta + 1) \hat{\theta} + \\
+            &\frac{1}{4r\sin\theta}\beta r^9\sin^5\theta\cos^4\theta\sin^2\phi(7\cos\phi+5\cos3\phi)\hat{\phi}
+            \end{align*}
+        \end{enumerate}
+
+        \item $f(\vv{r}) = \gamma (x^2+y^2)^{\frac{p}{2}}+\alpha z^q$
+        \begin{enumerate}
+            \item Cylindrical coordinates
+            First we transform it into cylindrical coordinates:
+            \[
+            f(\vv{r}) = \gamma r^{p}+\alpha z^q
+            \]
+            Next we compute the gradients
+            \begin{align*}
+            \nabla f &= \gamma pr^{p-1} \hat{r} + \alpha q z^{q-1}
+            \end{align*}
+            \item Spherical coordinates 
+            First we transform it into spherical coordinates:
+            \begin{align*}
+                f(\vv{r}) &= \gamma ((r\sin\theta\cos\phi)^2+(r\sin\theta\sin\phi)^2)^{\frac{p}{2}}+\alpha (r\cos\theta)^q \\
+                          &= \gamma (r\sin\theta)^p+\alpha (r\cos\theta)^q
+            \end{align*}
+            Next we compute the gradients
+            \begin{align*}
+            \nabla f &= [\gamma p (r\sin\theta)^{p-1}\sin\theta +\alpha q (r\cos\theta)^{q-1}\cos\theta]\hat{r} + \frac{1}{r}[\gamma p (r\sin\theta)^{p-1} r \cos\theta - \alpha q (r\cos\theta)^{q-1}r\sin\theta]\hat{\theta}
+            \end{align*}
+        \end{enumerate}
+    \end{enumerate}
+    \item Recall (see equation (2.26) in the note of lecture 2) that in spherical polar coordinates,
+    \[
+    \de \vv{r} = \de r \hat{r} + r(\de \theta \hat{\theta} + \de \phi \sin\theta\hat{\phi})
+    \]
+    \begin{enumerate}
+        \item Compute the $\hat{r}$ component of the curl of a vector $\vv{v}$ from the fundamental definition: write $\vv{v} = v_r\hat{r}+v_\theta\hat{\theta}+v_\phi\hat{\phi}$ and compute the circulation of $\vv{v}$ (line integral) around a little square perpendicular to $\hat{r}$. Then divide by the area of the square and take the limit as the area vanishes to find $\hat{r}\cdot(\vv{\nabla} \times \vv{v})$\\
+
+        Notice that in spherical coordinates, we have:
+        \[
+        \mathrm{d}\vv{r} = \mathrm{d}r\,\hat{r} + r\,\mathrm{d}\theta \,\hat{\theta } + r \sin{\theta} \, \mathrm{d}\phi\,\hat{\phi}
+        \]
+        and the definition of curl is given as:
+        \[
+        \lim_{\abs{A} \rightarrow 0} \frac{1}{A} \oint \vv{V} \cdot \de \vv{r} = (\vv{\nabla} \times \vv{V})\cdot \hat{n}
+        \]
+
+        Now we take $r$ is a constent, thus we can have a surface at point $(r,\theta,\phi)$ as $[(r,\theta,\phi), (r,\theta,\phi+ \de \phi), (r,\theta + \de \theta,\phi + \de \phi), (r,\theta + \de \theta, \phi)]$. Thus we have 4 paths as following:
+        \[
+        \left\{
+        \begin{aligned}
+        \gamma_1 &= r \sin\theta \de \phi\\
+        \gamma_2 &= r\de \theta\\
+        \gamma_3 &= -r \sin(\theta + \de \theta)\de \phi\\
+        \gamma_4 &= -r\de \theta
+        \end{aligned}
+        \right.
+        \]
+        Now we do the line integral follow the above paths:
+        \begin{align*}
+            \oint \vv{V}\cdot \de \vv{r} &= 
+            V_\phi(r,\theta,\bar{\phi})r \sin\theta \de \phi + 
+            V_\theta(r,\bar{\theta},\phi + \de \phi)r\de \theta 
+            - V_\phi(r, \theta + \de \theta, \bar{\phi}) r \sin(\theta + \de \theta)\de \phi 
+            - V_\theta(r,\bar{\theta},\phi) r\de \theta \\
+            &= \left[V_\phi(r,\tilde{\theta},\bar{\phi})r\sin\tilde{\theta}\de\phi \right]_{\theta + \de \theta}^\theta + 
+            \left[V_\theta(r,\bar{\theta},\tilde{\phi})r\de\theta\right]_\phi^{\phi+\de \phi} \\
+            &= -\frac{\partial}{\partial \theta}V_\phi r \sin\theta \de\phi\de\theta + \frac{\partial}{\partial\phi} V_\theta r \de \phi \de \theta
+        \end{align*}
+        Now we can also find the area as $A = r^2\de\theta \sin\theta\de \phi$. Thus, we can find the curl that 
+        \begin{align*}
+            (\vv{\nabla} \times \vv{V})\cdot \hat{(-r)} &= \lim_{\abs{A}\rightarrow 0} \frac{-\frac{\partial}{\partial \theta}V_\phi r \sin\theta \de\phi\de\theta + \frac{\partial}{\partial\phi} V_\theta r \de \phi \de \theta}{r^2\de\theta \sin\theta\de \phi}\\
+            &= \lim_{\abs{A}\rightarrow 0} \frac{-\frac{\partial}{\partial \theta}V_\phi r \sin\theta  + \frac{\partial}{\partial\phi} V_\theta r }{r^2 \sin\theta} \\
+            &= -\frac{1}{r\sin\theta}\frac{\partial V_\phi \sin\theta}{\partial\theta} + \frac{1}{r\sin\theta}\frac{\partial V_\theta}{\partial \phi}
+        \end{align*}
+        notice that we do the path integral such that the area vector point to the origin (by right hand rule). Thus we have:
+        \[
+            (\vv{\nabla} \times \vv{V})\cdot \hat{r} = \frac{1}{r\sin\theta}\frac{\partial V_\phi \sin\theta}{\partial\theta} - \frac{1}{r\sin\theta}\frac{\partial V_\theta}{\partial \phi}
+        \]
+
+        \item Now compute the $\theta$ and $\phi$ components of the curl using the same approach.\\
+
+        Let $\phi$ be fixed. We can have a surface at point $(r,\theta,\phi)$ as $[(r,\theta,\phi), (r+\de r, \theta,\phi),(r+\de r, \theta + \de \theta,\phi), (r,\theta + \de \theta,\phi)]$. Thus we have intergral as following:
+        \[
+        \left\{
+        \begin{aligned}
+        \int_{\gamma_1} \vv{V} \cdot \de \vv{r} &= \de r V_r(\bar{r},\theta,\phi)\\
+        \int_{\gamma_2} \vv{V} \cdot \de \vv{r} &= r \de \theta V_\theta(r+\de r, \bar{\theta},\phi)\\
+        \int_{\gamma_3} \vv{V} \cdot \de \vv{r} &= -\de r V_r(\bar{r},\theta + \de \theta,\phi)\\
+        \int_{\gamma_4} \vv{V} \cdot \de \vv{r} &= -r\de \theta V_\theta(r,\bar{\theta},\phi)
+        \end{aligned}
+        \right.
+        \]
+        Now we can do the whole path integral:
+        \begin{align*}
+            \oint \vv{V} \cdot \de \vv{r} &= \de r V_r(\bar{r},\theta,\phi) + r \de \theta V_\theta(r+\de r, \bar{\theta},\phi) -\de r V_r(\bar{r},\theta + \de \theta,\phi) -r\de \theta V_\theta(r,\bar{\theta},\phi)\\
+            &= \left[\de r V_r(\bar{r},\tilde{\theta},\phi)\right]_{\theta + \de \theta}^\theta +
+               \left[r\de\theta V_\theta (\tilde{r},\bar{\theta},\phi)\right]_r^{r+\de r}\\
+            &= -\frac{\partial}{\partial \theta} \de r \de \theta V_r + 
+            \frac{\partial}{\partial r} r\de\theta \de r V_\theta
+        \end{align*}
+        Now we can also find the area as $A = r\de r \de \theta$. And now we can find curl on $\phi$ as 
+        \begin{align*}
+            (\vv{\nabla}\times V)\cdot \hat{(-\phi)} &= \lim_{\abs{A}\rightarrow0}\frac{-\frac{\de}{\de \theta} \de r \de \theta V_r + \frac{\de}{\de r} r\de\theta \de r V_\theta}{r\de r \de \theta} \\
+            &= \lim_{\abs{A}\rightarrow0}\frac{-\frac{\partial}{\partial \theta}  V_r + \frac{\partial}{\partial r} r V_\theta}{r} \\
+            &= -\frac{1}{r}\frac{\partial V_r}{\partial\theta} + \frac{1}{r}\frac{\partial (r V_\theta)}{\partial r}
+        \end{align*}
+        Again I have done the integral in the opposite direction so we have:
+        \[
+        (\vv{\nabla}\times V)\cdot \hat{\phi} = \frac{1}{r}\frac{\partial V_r}{\partial\theta} -\frac{1}{r}\frac{\partial (r V_\theta)}{\partial r}
+        \]
+        \begin{center}
+            \line(1,0){200}
+        \end{center}
+
+
+        Now we compute the $\theta$ components of the curl. take $\theta$ as constent. Let $\theta$ be constent, we can have a area at $(r,\theta,\phi)$ as $[(r,\theta,\phi),(r+\de r,\theta, \phi), (r+\de r,\theta, \phi + \de \phi),(r,\theta, \phi + \de \phi)]$. Therefore we can have path integral:
+        \begin{align*}
+            \oint \vv{V}\cdot\de\vv{r} &= \de r V_r(\bar{r},\theta,\phi) + r\sin\theta\de\phi V_\phi(r+\de r, \theta,\bar{\phi}) - \de r V_r(\bar{r},\theta,\phi+\de\phi)-r\sin\theta\de\phi V_\phi(r,\theta,\bar{\phi}) \\
+            &= \left[\de r V_r(\bar{r},\theta,\tilde{\phi})\right]_{\phi + \de \phi}^\phi + \left[r\sin\theta\de\phi V_\phi(\tilde{r},\phi,\phi)\right]_r^{r+\de r} \\
+            &= -\frac{\partial}{\partial \phi} \de r V_r \de \phi + \frac{\partial}{\partial r} r \sin\theta\de\phi\de r V_\phi 
+        \end{align*}
+        And we can find the area as $r\sin\theta\de\phi\de r$. Therefore we can find:
+        \begin{align*}
+            (\vv{\nabla}\times \vv{V}) \cdot \hat{(-\theta)} &= \lim_{\abs{A}\rightarrow0} \frac{-\frac{\partial}{\partial \phi} \de r V_r \de \phi + \frac{\partial}{\partial r} r \sin\theta\de\phi\de r V_\phi }{r\sin\theta\de\phi\de r} \\
+            &= \frac{-\frac{\partial}{\partial \phi}  V_r  + \sin\theta\frac{\partial}{\partial r} r V_\phi }{r\sin\theta} \\
+            &= -\frac{1}{r\sin\theta}\frac{\partial V_r}{\partial \phi} + \frac{1}{r}\frac{\partial (r V_\phi)}{\partial r}
+        \end{align*}
+        Thus we have:
+        \[
+        (\vv{\nabla}\times \vv{V}) \cdot \hat{\theta} = \frac{1}{r\sin\theta}\frac{\partial V_r}{\partial \phi} - \frac{1}{r}\frac{\partial (r V_\phi)}{\partial r}
+        \]
+
+        \item Show taht any vector of the form $\vv{v} = f(r)\hat{r}$ has vanishing curl. \\
+
+        From the above result, we have:
+        \[
+        \vv{\nabla} \times \vv{V} = 
+          \left(\frac{1}{r\sin\theta}\frac{\partial V_\phi \sin\theta}{\partial\theta} - \frac{1}{r\sin\theta}\frac{\partial V_\theta}{\partial \phi}\right) \hat{r}
+        + \left(\frac{1}{r}\frac{\partial V_r}{\partial\theta} -\frac{1}{r}\frac{\partial (r V_\theta)}{\partial r}\right)\hat{\phi} 
+        + \left(\frac{1}{r\sin\theta}\frac{\partial V_r}{\partial \phi} - \frac{1}{r}\frac{\partial (r V_\phi)}{\partial r}\right)\hat{\theta}
+        \]
+        therefore we can plug $\vv{v} = f(r)\hat{r}$ into the result:
+        \[
+            \vv{\nabla} \times \vv{v} = 
+          \frac{1}{r}\frac{\partial f(r)}{\partial\theta}\hat{\phi} 
+        + \frac{1}{r\sin\theta}\frac{\partial f(r)}{\partial \phi}\hat{\theta} = 0
+        \]
+        that is, every $V_\theta$ and $V_\phi$ vanish, and the terms left can be evaluated as zero.
+    \end{enumerate}
+    % \vv{v} = \dot{\vv{r}} = \frac{\de}{\de t} (r \hat{r}) = \dot{r}\hat{r} + r(\dot{\theta}\hat{\theta}+\dot{\phi}\hat{\phi}\sin\theta)
+\end{enumerate}
+      
+
+
+
+
+% \begin{eqnarray*}
+\end{document}
